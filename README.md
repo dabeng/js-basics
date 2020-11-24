@@ -98,34 +98,37 @@ MyClass.prototype.myMethod = function() {
 };
 
 // ES6 version
-const RaceDayService = superclass => class extends superclass { 
+class A {
+    constructor(){
+        console.log('A');
+    }
+}
+
+const B = SuperClass => class extends SuperClass { 
     constructor(){
         super();
-        console.log('service');
+        console.log('B');
     }
 }
 
-const RaceDayDB = superclass => class extends superclass { 
+const C = SuperClass => class extends SuperClass { 
     constructor(){
         super();
-        console.log('db');
+        console.log('C');
     }
 }
 
-class RaceDayUI {
+
+
+class D extends C(B(A)){
     constructor(){
-        console.log('ui');
-    }
-}
-
-class RaceDay extends RaceDayDB(RaceDayService(RaceDayUI)){
-    constructor(options){
         super();
-        console.log('main');
+        console.log('D');
     }
 }
 
-const raceDay = new RaceDay();
+const d = new D();
+// output: ABCD
 ```
 ### Clone Objects
 #### Shallow Copy
