@@ -99,35 +99,34 @@ MyClass.prototype.myMethod = function() {
 
 // ES6 version
 class A {
-    constructor(){
-        console.log('A');
-    }
+  constructor(){
+    console.log('A');
+  }
 }
 
 const B = SuperClass => class extends SuperClass { 
-    constructor(){
-        super();
-        console.log('B');
-    }
+  constructor(){
+    super();
+    console.log('B');
+  }
 }
 
 const C = SuperClass => class extends SuperClass { 
-    constructor(){
-        super();
-        console.log('C');
-    }
+ constructor(){
+   super();
+   console.log('C');
+ }
 }
 
-
-
 class D extends C(B(A)){
-    constructor(){
-        super();
-        console.log('D');
-    }
+  constructor(){
+    super();
+    console.log('D');
+  }
 }
 
 const d = new D();
+
 // output: ABCD
 ```
 ### Clone Objects
