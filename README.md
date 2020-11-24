@@ -312,6 +312,68 @@ say1('Hello');
 say2('Hello');
 ```
 ## Array
+### reduce() method
+- 求数组项之和
+```js
+let arr1 = [1, 2, 3, 4, 5];
+let sum = arr1.reduce((total, num) => {
+   return total + num;
+});
+console.log(sum); // 15
+```
+- 求数组项最大值
+```js
+let arr = [2, 3, 1, 4, 5];
+let max = arr.reduce((prev, cur) => {
+  return Math.max(prev, cur);
+});
+console.log(max); // 5
+```
+
+- 数组去重
+```js
+let arr = [1, 2, 2, 3, 3, 4, 5];
+let uniqueArr = arr.reduce((pre, cur) => {
+  if (!pre.includes(cur)) {
+    return pre.concat(cur);
+  } else {
+    return pre;
+  }
+}, []);
+console.log(uniqueArr); // 1,2,3,4,5
+```
+
+- 将二维数组转化为一维
+```js
+let arr = [[1, 2], [3, 4], [5, 6]];
+let flatArr = arr.reduce((pre, cur) => {
+  return pre.concat(cur);
+}, []);
+console.log(flatArr); // 1,2,3,4,5,6
+```
+
+- 求对象数组中某属性的和
+```js
+const result = [
+  {
+   subject: '语文',
+   score: 90
+  },
+  {
+   subject: '数学',
+   score: 80
+  },
+  {
+    subject: '英语',
+    score: 70
+   }
+ ];
+ const total = result.reduce((prev, cur) => {
+   return  prev + cur.score; 
+ }, 0);
+console.log(total); // 240
+```js
+
 ### Clone Array
 #### Shallow Copy
 - `var copy = arr.slice();`
