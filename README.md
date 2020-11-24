@@ -617,8 +617,9 @@ arr.sort(function(){return Math.random() - 0.5});
 ```
 ### Undefined
 ```js
-1 typeof value === 'undefined'
-2 /Undefined/.test(Object.prototype.toString.call(value))
+1 value === undefined
+2 typeof value === 'undefined'
+3 /Undefined/.test(Object.prototype.toString.call(value))
 ```
 ### Null
 ```js
