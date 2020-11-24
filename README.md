@@ -144,14 +144,14 @@ Unfortunately, this method can't be used to copy user-defined object methods.
 `let copy = Object.create(obj);`
 #### Native Way
 ```js
-function copy(mainObj) {
-  let objCopy = {}; // objCopy will store a copy of the mainObj
+function copy(obj) {
+  let copy = {}; // objCopy will store a copy of the mainObj
   let key;
 
   for (key in mainObj) {
-    objCopy[key] = mainObj[key]; // copies each property to the objCopy object
+    copy[key] = obj[key]; // copies each property to the objCopy object
   }
-  return objCopy;
+  return copy;
 }
 ```
 ## Async Programming
