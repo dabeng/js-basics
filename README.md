@@ -372,7 +372,7 @@ const result = [
    return  prev + cur.score; 
  }, 0);
 console.log(total); // 240
-```js
+```
 
 ### Clone Array
 #### Shallow Copy
