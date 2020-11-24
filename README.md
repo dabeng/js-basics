@@ -142,7 +142,7 @@ This works for all kind of objects containing objects, arrays, strings, booleans
 Unfortunately, this method can't be used to copy user-defined object methods.
 #### Deep Copy & Copying Object Methods
 `let copy = Object.create(obj);`
-#### Native Way
+#### Native Deep Copy
 ```js
 function copy(obj) {
   let copy = {}; // objCopy will store a copy of the mainObj
@@ -153,6 +153,13 @@ function copy(obj) {
   }
   return copy;
 }
+
+const ref = 100;
+const obj = { a: 1, b: ref };
+const objCopy = copy(obj);
+objCopy.b = 123;
+document.write(`<p>${objCopy.b}</p>`); // 123
+document.write(`<p>${obj.b}</p>`); // 100
 ```
 ## Async Programming
 ### Chained Promises
