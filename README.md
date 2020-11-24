@@ -162,40 +162,116 @@ document.write(`<p>${objCopy.b}</p>`); // 123
 document.write(`<p>${obj.b}</p>`); // 100
 ```
 ## Async Programming
-### Chained Promises
+### Callback Hell
 ```js
-// ES6 version
-function double(x) {
-  return new Promise(resolve => {
+function runTasks() {
+  setTimeout(() => {
+    document.write('<p>Task 1</p>');
     setTimeout(() => {
-      resolve(x * 2);
+      document.write('<p>Task 2</p>');
+      setTimeout(() => {
+        document.write('<p>Task 3</p>');
+      }, 1000);
+    }, 1000);
+  }, 1000);
+}
+
+runTasks();
+
+// solution 1:
+function task1 () {
+  setTimeout(() => {
+    document.write('<p>Task 1</p>');
+    task2();
+   }, 1000);
+}
+
+function task2 () {
+   setTimeout(() => {
+    document.write('<p>Task 2</p>');
+    task3();
+   }, 1000);
+}
+
+function task3 () {
+   setTimeout(() => {
+    document.write('<p>Task 3</p>');
+   }, 1000);
+}
+
+task1();
+
+// solution 2: Chained Promises
+function task1() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      document.write('<p>Task 1</p>');
+      resolve();
+    }, 1000);
+  });
+};
+
+function task2() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      document.write('<p>Task 2</p>');
+      resolve();
+    }, 1000);
+  });
+};
+
+function task3() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      document.write('<p>Task 3</p>');
+      resolve();
+    }, 1000);
+  });
+};
+
+task1()
+  .then(() => {
+    return task2();
+  })
+  .then(() => {
+    task3();
+  });
+  
+// solution 3: async & await
+function task1() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      document.write('<p>Task 1</p>');
+      resolve();
     }, 1000);
   });
 }
 
-function timeconsumingCalc(x){
-  return new Promise(resolve => {
-    double(10).then(a => {
-      double(20).then(b => {
-        double(30).then(c => {
-          resolve(x + a + b + c);
-      	})
-      })
-    })
+function task2() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      document.write('<p>Task 2</p>');
+      resolve();
+    }, 1000);
   });
 }
 
-timeconsumingCalc(10).then(sum => {
-  console.log(sum);
-});
-
-// refactored version based async and await of ES2017
-async function timeconsumingCalc(x) {
-  const a = await double(10);
-  const b = await double(20);
-  const c = await double(30);
-  return x + a + b + c;
+function task3() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      document.write('<p>Task 3</p>');
+      resolve();
+    }, 1000);
+  });
 }
+
+async function runTasks() {
+  await task1();
+  await task2();
+  await task3();
+}
+
+runTasks();
 ```
 ## this
 ### call() vs apply() vs bind()
