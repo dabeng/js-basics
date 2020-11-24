@@ -278,44 +278,38 @@ runTasks();
 - call() invokes the function and allows you to pass in arguments one by one.
 - apply() invokes the function and allows you to pass in arguments as an array.
 - bind() returns a new function, allowing you to pass in a this array and any number of arguments.
+
 **call()**
 ```js
-var person1 = {firstName: 'Jon', lastName: 'Kuperman'};
-var person2 = {firstName: 'Kelly', lastName: 'King'};
-
-function say(greeting) {
-    console.log(greeting + ' ' + this.firstName + ' ' + this.lastName);
+var person1 = { name: '111' };
+var person2 = { name: '222' };
+function say(word) {
+  document.write(`<p>${word} ${this.name}</p>`);
 }
-
-say.call(person1, 'Hello'); // Hello Jon Kuperman
-say.call(person2, 'Hello'); // Hello Kelly King
+say.call(person1, 'Hello');
+say.call(person2, 'Hello');
 ```
 **apply()**
 ```js
-var person1 = {firstName: 'Jon', lastName: 'Kuperman'};
-var person2 = {firstName: 'Kelly', lastName: 'King'};
-
-function say(greeting) {
-    console.log(greeting + ' ' + this.firstName + ' ' + this.lastName);
+var person3 = { name: '333' };
+var person4 = { name: '444' };
+function say(word) {
+  document.write(`<p>${word} ${this.name}</p>`);
 }
-
-say.apply(person1, ['Hello']); // Hello Jon Kuperman
-say.apply(person2, ['Hello']); // Hello Kelly King
+say.apply(person3, ['Hello']);
+say.apply(person4, ['Hello']);
 ```
 **bind()**
 ```js
-var person1 = {firstName: 'Jon', lastName: 'Kuperman'};
-var person2 = {firstName: 'Kelly', lastName: 'King'};
-
-function say() {
-    console.log('Hello ' + this.firstName + ' ' + this.lastName);
+var person5 = { name: '555' };
+var person6 = { name: '666' };
+function say(word) {
+  document.write(`<p>${word} ${this.name}</p>`);
 }
-
-var sayHelloJon = say.bind(person1);
-var sayHelloKelly = say.bind(person2);
-
-sayHelloJon(); // Hello Jon Kuperman
-sayHelloKelly(); // Hello Kelly King
+var say1 = say.bind(person5);
+var say2 = say.bind(person6);
+say1('Hello');
+say2('Hello');
 ```
 ## Array
 ### Clone Array
