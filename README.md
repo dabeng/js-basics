@@ -148,7 +148,7 @@ function copy(obj) {
   let copy = {}; // objCopy will store a copy of the mainObj
   let key;
 
-  for (key in mainObj) {
+  for (key in obj) {
     copy[key] = obj[key]; // copies each property to the objCopy object
   }
   return copy;
