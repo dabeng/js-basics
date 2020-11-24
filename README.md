@@ -420,7 +420,7 @@ while(A.length > 0) {
 Performance
 
 Of all the methods of clearing an existing array, methods 2 and 3 are very similar in performance and are a lot faster than method 4. See this [benchmark](http://jsben.ch/hyj65).
-### [Remove Duplicate Values](https://codepen.io/dabeng/pen/WWJqEg)
+### Remove Duplicate Values
 ```js
 // for loop
 var uniqueArr = [];
@@ -445,6 +445,11 @@ let arr2 = [...new Set(arr)];
 Math.max.apply(null,arr.join(',').split(','));
 Math.min.apply(null,arr.join(',').split(','));
 ```
+### create an array containing 1…N
+```js
+Array.from(Array(N), (v, i) => i + 1);
+```
+
 ## String
 ### Count the occurrence of a substring in a string
 ```js
