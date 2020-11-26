@@ -1,26 +1,5 @@
 # JavaScript
-## Closure
-When the like function finishes running, normally we would expect all of its variables to be garbage collected (removed from memory, which is an automatic process that the JS compiler does). We'd expect each likeCount to go away when the function is done, but they don't.Since the inner function instances are still alive (assigned to like), the closure is still preserving the likeCount variables.
-```js
-// To use a closure, define a function inside another function and expose it.
-// To expose a function, return it or pass it to another function.
-function handleLike(step) {
-  let likeCount = 0;
-  return function addLike() {
-    likeCount += step;
-    return likeCount;
-  };
-}
 
-const like = handleLike(1); // create an instance of the inner function addLike
-const doubleLike = handleLike(2);
-
-like(); // 1
-like(); // 2
-
-doubleLike(); // 2 (likeCount is still being preserved!)
-doubleLike(); // 4
-```
 ## hotch-potch
 ### swap two variables
 ```js
@@ -103,6 +82,28 @@ ctx.fill();
     +++++
      +++
   </pre>
+```
+## Closure
+When the like function finishes running, normally we would expect all of its variables to be garbage collected (removed from memory, which is an automatic process that the JS compiler does). We'd expect each likeCount to go away when the function is done, but they don't.Since the inner function instances are still alive (assigned to like), the closure is still preserving the likeCount variables.
+```js
+// To use a closure, define a function inside another function and expose it.
+// To expose a function, return it or pass it to another function.
+function handleLike(step) {
+  let likeCount = 0;
+  return function addLike() {
+    likeCount += step;
+    return likeCount;
+  };
+}
+
+const like = handleLike(1); // create an instance of the inner function addLike
+const doubleLike = handleLike(2);
+
+like(); // 1
+like(); // 2
+
+doubleLike(); // 2 (likeCount is still being preserved!)
+doubleLike(); // 4
 ```
 ## OOP
 ### Define Classes
