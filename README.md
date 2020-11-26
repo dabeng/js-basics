@@ -30,6 +30,80 @@ b = [a, a = b][0];
 // solution 2: ES 6 destructuring assignment
 [a, b] = [b, a]
 ```
+### draw a circle on the page
+```js
+// img tag
+  <img src="circle.png" width="100" height="100" />
+  
+// border-radius
+#circle {
+  background-color: #000;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+// clip-path
+#circle {
+  background-color: #000;
+  width: 100px;
+  height: 100px;
+  clip-path: circle();
+}
+
+// html entity
+<div id="circle">&#11044;</div>
+#circle {
+  font-size: 100px;
+  line-height: 100px;
+}
+
+// pseduo element
+#circle5::before {
+  content: "";
+  display: block;
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  background-color: #000;
+}
+
+// radial-gradient
+#circle {
+  background-image: radial-gradient(black 66.666%, transparent 33.333%);
+  height: 100px;
+  width: 100px;
+}
+
+// svg circle & path
+<svg width="100" height="100">
+  <circle cx="50" cy="50" r="50" />
+</svg>
+  
+// canvas arc()
+<canvas id="myCanvas" width="100" height="100"></canvas>
+var c = document.getElementById('myCanvas');
+var ctx = c.getContext('2d');
+ctx.beginPath();
+ctx.arc(50, 50, 50, 0, 2 * Math.PI);
+ctx.fillStyle = '#000';
+ctx.fill();
+
+// pre tag
+  <pre style="line-height:8px;">
+     +++
+    +++++
+   +++++++
+  +++++++++
+ +++++++++++
+ +++++++++++
+ +++++++++++
+  +++++++++
+   +++++++
+    +++++
+     +++
+  </pre>
+```
 ## OOP
 ### Define Classes
 ```js
