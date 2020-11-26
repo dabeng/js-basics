@@ -655,13 +655,40 @@ arr.sort(function(){return Math.random() - 0.5});
 3 /Symbol/.test(Object.prototype.toString.call(value))
 ```
 # Component
+## Web Components
+```js
+class MyElement extends HTMLElement {
+  constructor() {
+    super();
+    // element created
+  }
+
+  connectedCallback() {
+    // browser calls this method when the element is added to the document
+    // (can be called many times if an element is repeatedly added/removed)
+  }
+
+  disconnectedCallback() {
+    // browser calls this method when the element is removed from the document
+    // (can be called many times if an element is repeatedly added/removed)
+  }
+
+  static get observedAttributes() {
+    return [/* array of attribute names to monitor for changes */];
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    // called when one of attributes listed above is modified
+  }
+}
+```
 ## jQuery Plugin
 ## ES6 Class
 ## React SFC
 ## Vuejs Single File component
 ## Make a slider
 # Animation
-### Move an object in a circular path
+## Move an object in a circular path
 # Chart
 # Testing
 # Performance
