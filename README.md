@@ -769,4 +769,14 @@ class MyElement extends HTMLElement {
 # Performance
 # Security
 # MVC & MVVM
+# Test
+## spy vs stub vs mock
+1. Spies are used to get information about function calls. For example, a spy can tell us how many times a function was called, what arguments each call had, what values were returned, what errors were thrown, etc.
+
+2. Stubs are like spies, except in that they replace the target function. They can also contain custom behavior, such as returning values or throwing exceptions. They can even automatically call any callback functions provided as parameters.Stubs have a few common uses:
+- You can use them to replace problematic pieces of code
+- You can use them to trigger code paths that wouldn’t otherwise trigger – such as error handling
+- You can use them to help test asynchronous code more easily
+
+3. mocks can be used to replace whole objects and alter their behavior similar to stubbing functions.They are primarily useful if you need to stub more than one function from a single object. If you only need to replace a single function, a stub is easier to use.
 # bundle & build
