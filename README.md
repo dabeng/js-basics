@@ -430,12 +430,8 @@ console.log(max); // 5
 - 数组去重
 ```js
 let arr = [1, 2, 2, 3, 3, 4, 5];
-let uniqueArr = arr.reduce((pre, cur) => {
-  if (!pre.includes(cur)) {
-    return pre.concat(cur);
-  } else {
-    return pre;
-  }
+let uniqueArr = arr.reduce((prev, cur) => {
+  return prev.inclues(cur) ? prev : prev.concat(cur);
 }, []);
 console.log(uniqueArr); // 1,2,3,4,5
 ```
