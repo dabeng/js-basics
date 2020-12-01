@@ -1,6 +1,16 @@
 # JavaScript
 
 ## hotch-potch
+### convert string to number
+```js
+parseInt('10.5px', 10); // 10
+parseFloat('10.5px'); // 10.5
+Number('10.5'); // 10.5
+Number('10.5px'); // NaN
++'10.5' // 10.5
+'10.5'*1 // 10.5
+```
+parseInt(text, 10);
 ### swap two variables
 ```js
 // solution 1
