@@ -555,6 +555,12 @@ Array.from(Array(N), (v, i) => i + 1);
 ```
 
 ## String
+### 字符与ASCII码互转
+```js
+'abc'.charCodeAt(0); // 97
+String.fromCharCode(97) // 'a'
+```
+
 ### Count the occurrence of a substring in a string
 ```js
 // split()
@@ -563,7 +569,7 @@ str.split(subStr).length - 1
 // match()
 (str.match(new RegExp(subStr, 'g')) || []).length
 ```
-#### Get the position of nth occurrence of a substring in a string
+### Get the position of nth occurrence of a substring in a string
 ```js
 // split() & join()
 str.split(subStr, n).join(subStr).length;
