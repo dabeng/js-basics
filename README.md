@@ -1,7 +1,7 @@
 # JavaScript
 
 ## hotch-potch
-### check if url2 is subdomain of url1 
+### check if two urls belong the same domain
 ```js
 function isSubdomain(url1, url2) {
   const protocols = [
