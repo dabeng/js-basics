@@ -555,6 +555,14 @@ Array.from(Array(N), (v, i) => i + 1);
 ```
 
 ## String
+### 字符串重复n次
+```js
+// Array.prototype.join()
+new Array(n+1).join(str);
+
+// ES6 repeat()
+str.repeat(n)
+```
 ### 字符与ASCII码互转
 ```js
 'abc'.charCodeAt(0); // 97
