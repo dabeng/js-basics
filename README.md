@@ -106,7 +106,6 @@ The code also issues the same error as the function expression example because a
 ```js
 "TypeError: add is not a function
 ```
-####
 ### check if two urls belong the same domain
 ```js
 function isSubdomain(url1, url2) {
@@ -572,6 +571,38 @@ say1('Hello');
 say2('Hello');
 ```
 ## Array
+### Queue
+#### 找出最长的不重复的字串
+```js
+function longestSubstrs(str) {
+  let queue = []; // 在队列中攒可能的最长字串
+  let result = []; // 保存最长字串的集合
+
+  for (let i = 0; i < str.length; i++) {
+    let index = queue.indexOf(str[i]);
+    if (index > -1) { // 重复位置往前的字符串一律出队列
+      queue.splice(0, index + 1);
+    }
+    // 新字符入队列
+    queue.push(str[i]);
+    // 起始的最长子串
+    if (!result.length) {
+      result.push(queue.join(''));
+    }
+    // 新的最长子串
+    if (result.length && queue.length > result[0].length) {
+      result = [queue.join('')];
+    }
+    // 又一个长度相同的字串
+    if (result.length && queue.length === result[0].length && result.indexOf(queue.join('')) === -1) {
+      result.push(queue.join(''));
+    }
+  }
+  return result;
+};
+
+console.log(longestSubstrs('abcabcbb')); // ['abc', 'bca', 'cab']
+```
 ### reduce() method
 - 求数组项之和
 ```js
