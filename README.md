@@ -1,6 +1,38 @@
 # JavaScript
 
 ## hotch-potch
+### check if url2 is subdomain of url1 
+```js
+function isSubdomain(url1, url2) {
+  const protocols = [
+    url1.slice(0,url1.indexOf(':')),
+    url2.slice(0,url2.indexOf(':'))
+  ];
+  if (protocols[0] !== protocols[1]) {
+    return false;
+  }
+  
+  const domains = [
+    url1.slice(url1.indexOf('//') + 2, url1.indexOf(':', 9) > -1 ? url1.indexOf(':', 9) : url1.indexOf('/', 9)),
+    url2.slice(url2.indexOf('//') + 2, url2.indexOf(':', 9) > -1 ? url2.indexOf(':', 9) : url2.indexOf('/', 9))
+  ]; 
+  if (domains[0] !== domains[1]) {
+    return false;
+  }
+  
+  const ports = [
+    url1.indexOf(':', 9) > -1 ? url1.slice(url1.indexOf(':', 9) + 1, url1.indexOf('/', 9)) :
+      url1.startsWith('https') ? '443' : '80',
+    url2.indexOf(':', 9) > -1 ? url2.slice(url2.indexOf(':', 9) + 1, url2.indexOf('/', 9)) :
+      url2.startsWith('https') ? '443' : '80'
+  ];
+  if (ports[0] !== ports[1]) {
+    return false;
+  }
+  
+  return true;
+}
+```
 ### convert string to number
 ```js
 parseInt('10.5px', 10); // 10
