@@ -1,6 +1,31 @@
 # JavaScript
 
 ## hotch-potch
+### Check password strength
+```js
+function isStrongPassword(str) {
+  // 长度在8～20之间
+  if (str.length < 8 || str.length > 20) {
+    return false;
+  }
+  // 至少包含一个字母
+  if (!/(?=.*[A-Za-z])/.test(str)) {
+    return false;
+  }
+  // 至少包含一个数字
+  if (!/(?=.*[0-9])/.test(str)) {
+    return false;
+  }
+  // 至少包含一个特殊字符（这里罗列出所有键盘上可见的特殊字符的英文和中文状态）
+  if (!/(?=.*[`~!@#$%^&*()_\-+=<>?:"{}|,.\/;'\\[\]·~！@#￥%……&*（）——\-+={}|《》？：“”【】、；‘'，。、])/.test(str)) {
+    return false;
+  }
+  
+  return true;
+}
+
+console.log(isStrongPassword('123abc$￥'));
+```
 ### Hoisting
 Hoisting is JavaScript's default behavior of moving all variable and function declarations to the top of the current scope (to the top of the current script or the current function).
 #### Variable hoisting
