@@ -1,6 +1,87 @@
 # JavaScript
 
 ## hotch-potch
+### Hoisting
+Hoisting is JavaScript's default behavior of moving all variable and function declarations to the top of the current scope (to the top of the current script or the current function).
+#### Variable hoisting
+```js
+console.log(counter); // undefined
+var counter = 1;
+```
+The **let** keyword
+```js
+console.log(counter);
+let counter = 1;
+```
+The JavaScript issues the following error:
+```js
+"ReferenceError: Cannot access 'counter' before initialization
+```
+If you access a variable that doesn’t exist:
+```js
+console.log(XXX);
+let counter = 1;
+```
+Here is the error:
+```js
+"ReferenceError: XXX is not defined
+```
+#### Function hoisting
+```js
+let x = 20,
+    y = 10;
+
+let result = add(x,y);
+console.log(result);
+
+function add(a, b){
+return a + b;
+}
+```
+The above code is equivalent to the following:
+```js
+function add(a, b){
+    return a + b;
+}
+
+let x = 20,
+    y = 10;
+
+let result = add(x,y);
+console.log(result);
+```
+#### Function expressions
+The following example changes the add from a regular function to a function expression:
+```js
+let x = 20,
+    y = 10;
+
+let result = add(x,y);
+console.log(result);
+
+var add = function(x, y) {
+return x + y;
+}
+```
+If you execute the code, the following error will occur:
+```js
+"TypeError: add is not a function
+```
+#### Arrow functions
+```js
+let x = 20,
+    y = 10;
+
+let result = add(x,y);
+console.log(result);
+
+var add = (x, y) => x + y;
+```
+The code also issues the same error as the function expression example because arrow functions are syntactic sugar for defining function expressions.
+```js
+"TypeError: add is not a function
+```
+####
 ### check if two urls belong the same domain
 ```js
 function isSubdomain(url1, url2) {
