@@ -394,31 +394,26 @@ const d = new D();
 - `let copy = { ...obj };`
 
 Tips: this method can be used to copy methods
-#### Deep Copy
+#### Deep Copy without methods
 `let copy = JSON.parse(JSON.stringify(obj));`
 
 This works for all kind of objects containing objects, arrays, strings, booleans and numbers.
 Unfortunately, this method can't be used to copy user-defined object methods.
-#### Deep Copy & Copying Object Methods
-`let copy = Object.create(obj);`
-#### Native Deep Copy
+#### Deep Copy with Methods
 ```js
-function copy(obj) {
-  let copy = {}; // objCopy will store a copy of the mainObj
-  let key;
-
-  for (key in obj) {
-    copy[key] = obj[key]; // copies each property to the objCopy object
-  }
-  return copy;
+function clone(obj) {
+  const temp = {};
+  // ES5 equivalent: for (var key in o) {
+   Object.keys(obj).forEach(key => {
+    if (typeof obj[key] === 'object') {
+      temp[key] = clone(obj[key]);
+    } else {
+      temp[key] = obj[key];
+    }
+   }
+  );
+  return temp;
 }
-
-const ref = 100;
-const obj = { a: 1, b: ref };
-const objCopy = copy(obj);
-objCopy.b = 123;
-document.write(`<p>${objCopy.b}</p>`); // 123
-document.write(`<p>${obj.b}</p>`); // 100
 ```
 ## Async Programming
 ### Callback Hell
