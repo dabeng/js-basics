@@ -1,6 +1,60 @@
 # JavaScript
 
 ## hotch-potch
+### Limit concurrent requests to at most 3 at a time
+```js
+const requestPool = {
+  MAX_PARALLEL_CALL: 3,
+  callQueue: [], // 等待发起请求的集合
+  activeCallCount: 0, // 正在请求中的数量
+  addCall(url) { // 增加一个新的请求
+    this.callQueue.push(url);
+    this.updateCallQueue();
+  },
+  onDoneOrFail() {
+    this.activeCallCount--;
+    this.updateCallQueue();
+  },
+  updateCallQueue() {
+    if (this.callQueue.length && this.activeCallCount <= this.MAX_PARALLEL_CALL) {
+      let activeCall = this.callQueue.shift();
+      this.activeCallCount++;
+      fetch(activeCall.url)
+        .then((response) => response.json())
+        .then((data) => {
+          this.onDoneOrFail();
+          activeCall.callback(data);
+        })
+        .catch((error) => {
+          this.onDoneOrFail();
+          console.error("Error:", error);
+        });
+    }
+  }
+};
+
+function cb1(data) {
+  console.log('cb1 done: ', data);
+}
+
+function cb2(data) {
+  console.log('cb2 done: ', data);
+}
+
+function cb3(data) {
+  console.log('cb3 done: ', data);
+}
+
+function cb4(data) {
+  console.log('cb4 done: ', data);
+}
+
+requestPool.addCall({url: "https://example.com/request1", callback: cb1 });
+requestPool.addCall({url: "https://example.com/request2", callback: cb2 });
+requestPool.addCall({url: "https://example.com/request3", callback: cb3 });
+requestPool.addCall({url: "https://example.com/request4", callback: cb4 });
+
+```
 ### Check password strength
 ```js
 function isStrongPassword(str) {
