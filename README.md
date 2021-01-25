@@ -848,19 +848,8 @@ function reverseStr(str) {
   return (str === '') ? '' : reverse(str.substr(1)) + str.charAt(0);
 }
 
-// half-index switch for-loop
-function reverse(str) {
-  str = str.split('');
-  var len = str.length;
-  var halfIndex = Math.floor(len / 2) - 1;
-  var tmp = '';
-  for (var i = 0; i <= halfIndex; i++) {
-    tmp = str[len - i - 1];
-    str[len - i - 1] = str[i];
-    str[i] = tmp;
-  }
-  return str.join('');
-}
+// reduce()
+str.split().reduce((res, cur) => cur + res);
 ```
 ## Truthy & Falsy
 The following values are always falsy:
