@@ -886,6 +886,10 @@ Array.from(Array(N), (v, i) => i + 1);
 ```
 
 ## String
+### 给定一个短语，按照顺序反转每一个单词
+```js
+str.split(' ').map(word => word.split('').reverse().join('')).join(' ')
+```
 ### 字符串重复n次
 ```js
 // Array.prototype.join()
