@@ -908,23 +908,25 @@ str.split(subStr).length - 1
 // match()
 (str.match(new RegExp(subStr, 'g')) || []).length
 ```
-### 找到重复次数最多的字符
+### 找出重复次数最多的字符
 ```js
 function getMaxOccurrenceChar(str) {
-  let maxChar = '';
+  let maxChar = [''];
   let maxCount = 0;
   const unique = Array.from(new Set(str.split('')));
   for (let i=0;i < unique.length;i++) {
     let count = str.split(unique[i]).length - 1;
     if (count > maxCount) {
-      maxChar = unique[i];
+      maxChar = [unique[i]];
       maxCount = count;
+    } else if (count === maxCount) {
+      maxChar.push(unique[i]);
     }
   }
   return maxChar;
 }
 
-getMaxOccurrenceChar('qwe werw erwer '); // w
+getMaxOccurrenceChar('abc awb bai '); // ['a','b', '']
 ```
 ### Get the position of nth occurrence of a substring in a string
 ```js
