@@ -300,6 +300,22 @@ outputDOMTree(document.body, 0);
 ```
 ## Event Loop
 ## Closure
+### 编写一个可以执行如下操作的函数
+```js
+var addSix = createBase(6);
+addSix(10); // 返回 16
+addSix(21); // 返回 27
+```
+可以创建一个闭包来存放传递给函数 createBase 的值。被返回的内部函数是在外部函数中创建的，内部函数就成了一个闭包，它可以访问外部函数中的变量，在本例中是变量 baseNumber。
+```js
+function createBase(baseNumber) {
+  return function(N) {
+    // 我们在这里访问 baseNumber，即使它是在这个函数之外声明的。
+    // JavaScript 中的闭包允许我们这么做。
+    return baseNumber + N;
+  }
+}
+```
 When the like function finishes running, normally we would expect all of its variables to be garbage collected (removed from memory, which is an automatic process that the JS compiler does). We'd expect each likeCount to go away when the function is done, but they don't.Since the inner function instances are still alive (assigned to like), the closure is still preserving the likeCount variables.
 ```js
 // To use a closure, define a function inside another function and expose it.
