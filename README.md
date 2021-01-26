@@ -705,7 +705,21 @@ say1('Hello');
 say2('Hello');
 ```
 ## Array
-### Queue
+### 按照制定长度分割数组
+给定数组和大小，将数组项拆分为具有给定大小的数组列表。
+```js
+function divideArray (arr, size) {
+  const result = [];
+  let index = 0;
+   while(index < arr.length) {
+     result.push(arr.slice(index, index + size));
+     index += size;
+   }
+   return result;
+}
+
+console.log(divideArray([1,2,3,4,5],2)); // [[1,2],[3,4],[5]]
+```
 #### 找出最长的不重复的字串
 ```js
 function longestSubstrs(str) {
