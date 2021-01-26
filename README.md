@@ -300,6 +300,37 @@ outputDOMTree(document.body, 0);
 ```
 ## Event Loop
 ## Closure
+### “闭包”是什么？举个例子
+闭包是在另一个函数（称为父函数）中定义的函数，并且可以访问在父函数作用域中声明和定义的变量。闭包可以访问三个作用域中的变量：1)在自己作用域中声明的变量；2)在父函数中声明的变量；3)在全局作用域中声明的变量。
+```js
+var globalVar = "abc";
+// 自调用函数
+(function outerFunction (outerArg) { // outerFunction 作用域开始
+  // 在 outerFunction 函数作用域中声明的变量
+  var outerFuncVar = 'x';    
+  // 闭包自调用函数
+  (function innerFunction (innerArg) { // innerFunction 作用域开始
+    // 在 innerFunction 函数作用域中声明的变量
+    var innerFuncVar = "y";
+    console.log(         
+      "outerArg = " + outerArg + "\n" +
+      "outerFuncVar = " + outerFuncVar + "\n" +
+      "innerArg = " + innerArg + "\n" +
+      "innerFuncVar = " + innerFuncVar + "\n" +
+      "globalVar = " + globalVar);
+  // innerFunction 作用域结束
+  })(5); // 将 5 作为参数
+// outerFunction 作用域结束
+})(7); // 将 7 作为参数
+```
+innerFunction 是在 outerFunction 中定义的闭包，可以访问在 outerFunction 作用域内声明和定义的所有变量。除此之外，闭包还可以访问在全局命名空间中声明的变量。上述代码的输出将是：
+```js
+outerArg = 7
+outerFuncVar = x
+innerArg = 5
+innerFuncVar = y
+globalVar = abc
+```
 ### 编写一个可以执行如下操作的函数
 ```js
 var addSix = createBase(6);
