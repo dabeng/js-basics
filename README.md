@@ -1150,6 +1150,12 @@ class MyElement extends HTMLElement {
 3. mocks can be used to replace whole objects and alter their behavior similar to stubbing functions.They are primarily useful if you need to stub more than one function from a single object. If you only need to replace a single function, a stub is easier to use.
 # bundle & build
 # Browser
+## 浏览器渲染页面的基本流程
+1. 解析HTML文件，创建DOM树--自上而下，遇到任何样式（link、style）与脚本（script）都会阻塞（外部样式不阻塞后续外部脚本的加载）。
+2. 解析CSS。
+3. 将CSS与DOM合并，构建渲染树（Render Tree）
+4. 布局和绘制，重绘（repaint）和重排（reflow）
+
 ## cookies sessionStorage和localstorage区别
 1. 存储大小：cookie数据大小不能超过4k。sessionStorage和localStorage 虽然也有存储大小的限制，但比cookie大得多，可以达到5M或更大。
 2. 有效期：cookie设置的cookie过期时间之前一直有效，即使窗口或浏览器关闭；sessionStorage数据在当前浏览器窗口关闭后自动删除；localStorage存储持久数据，浏览器关闭后数据不丢失除非主动删除数据。
