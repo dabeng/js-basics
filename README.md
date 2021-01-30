@@ -897,7 +897,7 @@ str.split(' ').map(word => word.split('').reverse().join('')).join(' ')
 ### 字符串重复n次
 ```js
 // Array.prototype.join()
-new Array(n+1).join(str);
+Array(n+1).join(str);
 
 // ES6 repeat()
 str.repeat(n)
