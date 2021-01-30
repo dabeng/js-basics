@@ -45,8 +45,8 @@ const requestPool = {
   MAX_PARALLEL_CALL: 3,
   callQueue: [], // 等待发起请求的集合
   activeCallCount: 0, // 正在请求中的数量
-  addCall(url) { // 增加一个新的请求
-    this.callQueue.push(url);
+  addCall(call) { // 增加一个新的请求
+    this.callQueue.push(call);
     this.updateCallQueue();
   },
   onDoneOrFail() {
@@ -65,7 +65,7 @@ const requestPool = {
         })
         .catch((error) => {
           this.onDoneOrFail();
-          console.error("Error:", error);
+          activeCall.callbback(error);
         });
     }
   }
