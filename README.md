@@ -6,8 +6,8 @@
 function revserInteger(num) {
   return parseInt((num).toString().split('').reverse().join('')) * Math.sign(num);
 }
-reverse(1234); // 4321
-reverse(-100); // 1
+revserInteger(1234); // 4321
+revserInteger(-100); // 1
 ```
 ### 判断两个字符串是否同构
 如果两个字符串是同构的，那么字符串 A 中所有出现的字符都可以用另一个字符替换，以便获得字符串 B，而且必须保留字符的顺序。字符串 A 中的每个字符必须与字符串 B 的每个字符一对一对应。
