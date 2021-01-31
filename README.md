@@ -742,7 +742,7 @@ function longestSubstrs(str) {
       result = [queue.join('')];
     }
     // 又一个长度相同的字串
-    if (result.length && queue.length === result[0].length && result.indexOf(queue.join('')) === -1) {
+    if (result.length && queue.length === result[0].length && !result.includes(queue.join(''))) {
       result.push(queue.join(''));
     }
   }
