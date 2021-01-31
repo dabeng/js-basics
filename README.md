@@ -720,7 +720,7 @@ function divideArray (arr, size) {
 
 console.log(divideArray([1,2,3,4,5],2)); // [[1,2],[3,4],[5]]
 ```
-#### 找出最长的不重复的字串
+#### 找出最长的不重复的子串
 ```js
 function longestSubstrs(str) {
   let queue = []; // 在队列中攒可能的最长字串
