@@ -1135,6 +1135,16 @@ class MyElement extends HTMLElement {
 ## requestAnimationFrame
 ## Move an object in a circular path
 # HTTP
+## HTTP codes
+- 200 – OK – the successful request. If the customer has requested any data, then these data are in the header and/or body of the message.
+- 201 – OK – a new resource was created as a result of the successful execution of the request.
+- 204 – OK – the resource was successfully deleted.
+- 304 – Not Modified – the client can use the data from the cache.
+- 400 – Bad Request – the request is invalid or could not be processed.
+- 401 – Unauthorized – the request requires user authentication.
+- 403 – Forbidden – the server understood the request, but refuses to handle it or access is denied.
+- 404 – Not found – the resource was not found.
+- 500 – Internal Server Error – API developers should try to avoid such errors. These errors must be caught in the global catch-block and be logged, but they should not be returned in the response.
 # MVC & MVVM
 # Performance
 # Security
