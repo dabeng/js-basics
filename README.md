@@ -9,36 +9,7 @@ function revserInteger(num) {
 revserInteger(1234); // 4321
 revserInteger(-100); // 1
 ```
-### 判断两个字符串是否同构
-如果两个字符串是同构的，那么字符串 A 中所有出现的字符都可以用另一个字符替换，以便获得字符串 B，而且必须保留字符的顺序。字符串 A 中的每个字符必须与字符串 B 的每个字符一对一对应。
-```js
-function isIsomorphic(str1, str2) {
-  // 检查长度是否相等，如果不相等, 它们不可能是同构的
-  if (str1.length !== str2.length) return false;
- 
-  var letterMap = {};
-  for (var i = 0; i < str1.length; i++) {
-    var letterA = str1[i],
-        letterB = str2[i];
- 
-    // 如果 letterA 不存在, 创建一个 map，并将 letterB 赋值给它
-    if (letterMap[letterA] === undefined) {
-      letterMap[letterA] = letterB;
-    } else if (letterMap[letterA] !== letterB) {
-      // 如果 letterA 在 map 中已存在, 但不是与 letterB 对应，
-      // 那么这意味着 letterA 与多个字符相对应。
-      return false;
-    }
-  }
-  // 迭代完毕，如果满足条件，那么返回 true。
-  // 它们是同构的。
-  return true;
-}
 
-isIsomorphic("egg", 'add'); // true
-isIsomorphic("paper", 'title'); // true
-isIsomorphic("kick", 'side'); // false
-```
 ### Limit concurrent requests to at most 3 at a time
 ```js
 const requestPool = {
@@ -326,12 +297,10 @@ ctx.fill();
 Output DOM tree
 ```js
 function outputDOMTree(node, count) {
-  document.write(`<p>` + `-`.repeat(count) + `${node.id ? node.id : node.nodeName}</p>`);
-  if (node.children.length) {
-    Array.from(node.children).forEach(child => {
-      outputDOMTree(child, count + 1);
-    });
-  }
+  document.write(`<p>` + `......`.repeat(count) + `${node.id ? node.id : node.nodeName}</p>`);
+  Array.from(node.children).forEach(child => {
+    outputDOMTree(child, count + 1);
+  });
 }
 
 outputDOMTree(document.body, 0);
