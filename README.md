@@ -524,6 +524,44 @@ function clone(obj) {
 }
 ```
 ## Async Programming
+### Promise.all(), Promise.race(), Promise.allSettled(), Promise.any()
+```js
+const p = Promise.all([p1, p2, p3]);
+```
+只有p1、p2、p3的状态都变成fulfilled，p的状态才会变成fulfilled，此时p1、p2、p3的返回值组成一个数组，传递给p的回调函数。只要p1、p2、p3之中有一个被rejected，p的状态就变成rejected，此时第一个被reject的实例的返回值，会传递给p的回调函数。
+
+```js
+const p = Promise.race([p1, p2, p3]);
+```
+只要p1、p2、p3之中有一个实例率先改变状态，p的状态就跟着改变。那个率先改变的 Promise 实例的返回值，就传递给p的回调函数。
+
+```js
+const promises = [
+  fetch('/api-1'),
+  fetch('/api-2'),
+  fetch('/api-3'),
+];
+
+await Promise.allSettled(promises);
+removeLoadingIndicator();
+```
+上面示例中，数组promises包含了三个请求，只有等到这三个请求都结束了（不管请求成功还是失败），removeLoadingIndicator()才会执行。
+
+```js
+Promise.any([
+  fetch('https://v8.dev/').then(() => 'home'),
+  fetch('https://v8.dev/blog').then(() => 'blog'),
+  fetch('https://v8.dev/docs').then(() => 'docs')
+]).then((first) => {  // 只要有一个 fetch() 请求成功
+  console.log(first);
+}).catch((error) => { // 所有三个 fetch() 全部请求失败
+  console.log(error);
+});
+```
+只要参数实例有一个变成fulfilled状态，包装实例就会变成fulfilled状态；如果所有参数实例都变成rejected状态，包装实例就会变成rejected状态。
+
+Promise.any()跟Promise.race()方法很像，只有一点不同，就是Promise.any()不会因为某个 Promise 变成rejected状态而结束，必须等到所有参数 Promise 变成rejected状态才会结束。
+
 ### Callback Hell
 ```js
 function runTasks() {
