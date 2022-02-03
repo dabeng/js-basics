@@ -884,8 +884,8 @@ let arr2 = [...new Set(arr)];
 
 ### Get max and min value
 ```js
-Math.max.apply(null,arr.join(',').split(','));
-Math.min.apply(null,arr.join(',').split(','));
+Math.max.apply(null,arr);
+Math.min.apply(null,arr);
 ```
 ### create an array containing 1…N
 ```js
