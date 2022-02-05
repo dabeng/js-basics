@@ -1,6 +1,19 @@
 # JavaScript
 
 ## hotch-potch
+### 运算符
+#### 指数运算符
+```js
+2 ** 2 // 4
+2 ** 3 // 8
+3 ** 2 ** 2 // 相当于 2 ** (3 ** 2) = 81
+
+let a = 1.5;
+a **= 2; // 等同于 a = a * a;
+
+let b = 4;
+b **= 3; // 等同于 b = b * b * b;
+```
 ### 整数反转
 ```js
 function revserInteger(num) {
