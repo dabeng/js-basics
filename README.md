@@ -14,6 +14,15 @@ a **= 2; // 等同于 a = a * a;
 let b = 4;
 b **= 3; // 等同于 b = b * b * b;
 ```
+#### 逻辑赋值运算符
+```js
+function example(opts) {
+  opts.foo ??= 'bar';
+  opts.baz ??= 'qux';
+}
+```
+上面示例中，参数对象opts如果不存在属性foo和属性baz，则为这两个属性设置默认值。
+
 ### 整数反转
 ```js
 function revserInteger(num) {
