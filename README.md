@@ -1005,7 +1005,7 @@ function reverseStr(str) {
 }
 
 // reduce()
-str.split().reduce((res, cur) => cur + res);
+str.split('').reduce((prev, cur) => cur + prev);
 ```
 ## Truthy & Falsy
 The following values are always falsy:
@@ -1018,6 +1018,7 @@ The following values are always falsy:
 - NaN (e.g. the result of 1/0)
 
 Everything else is truthy. That includes:
+- -1
 - '0' (a string containing a single zero)
 - 'false' (a string containing the text “false”)
 - [] (an empty array)
