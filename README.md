@@ -1190,6 +1190,14 @@ class MyElement extends HTMLElement {
 3. mocks can be used to replace whole objects and alter their behavior similar to stubbing functions.They are primarily useful if you need to stub more than one function from a single object. If you only need to replace a single function, a stub is easier to use.
 # bundle & build
 # Browser
+## Chrome DevTools
+**search by filename**
+cmd + O
+
+**search in all files**
+cmd + option + f
+
+search 
 ## 浏览器渲染页面的基本流程
 1. 解析HTML文件，创建DOM树--自上而下，遇到任何样式（link、style）与脚本（script）都会阻塞（外部样式不阻塞后续外部脚本的加载）。
 2. 解析CSS。
