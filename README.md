@@ -1235,4 +1235,10 @@ Caret Ranges
 5. 基于token的权限认证与授权，实现机制的基本说明
 6. 在页面上显示一个圆形，有哪些方案
 7. 把一个div从页面左侧移动到页面右侧，有哪些方案
+8. 为用户做了一个Demo程序，但又不想直接暴露本方的源码给客户，怎么处理？
+   这里涉及到的是这些方面：Minification, Uglification(Obfuscation), Compression
+   npm install -g javascript-obfuscator
+   javascript-obfuscator scripts.js --output s.js --compact true --string-array true --string-array-encoding base64 --rename-properties true
+   通过上面的命令，最终输出的s.js文件，是被缩减，混淆处理后的文件，无法阅读出原有代码逻辑，尤其是string literals（包括属性名在内）也被替换成string array，对外不可见。
+   
 
