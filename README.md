@@ -1245,4 +1245,29 @@ javascript-obfuscator scripts.js --output s.js --compact true --string-array tru
 ```   
 通过上面的命令，最终输出的s.js文件，是被缩减，混淆处理后的文件，无法阅读出原有代码逻辑，尤其是string literals（包括属性名在内）也被替换成string array，对外不可见。
    
+## 9. 浏览器端生成token ##
+```js
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
 
+function base64url(source) {
+  let encodedSource = CryptoJS.enc.Base64.stringify(source);
+  encodedSource = encodedSource.replace(/=+$/, '');
+  encodedSource = encodedSource.replace(/\+/g, '-');
+  encodedSource = encodedSource.replace(/\//g, '_');
+  return encodedSource;
+}
+
+function jwtSign(payload, secretOrPrivateKey) {
+  const header = { 'alg': 'HS256', 'typ': 'JWT' };
+  const stringifiedHeader = CryptoJS.enc.Utf8.parse(JSON.stringify(header));
+  const encodedHeader = base64url(stringifiedHeader);
+  const stringifiedPayload = CryptoJS.enc.Utf8.parse(JSON.stringify(payload));
+  const encodedPayload = base64url(stringifiedPayload);
+  const encodedSignature = base64url(CryptoJS.HmacSHA256(encodedHeader + "." + encodedPayload, secretOrPrivateKey));
+
+  return encodedHeader + "." + encodedPayload + "." + encodedSignature;
+}
+
+const token = jwtSign({ 'field1': 'test1', 'fileId2': 'test2'}, 'test key');
+console.log(token);
+```
