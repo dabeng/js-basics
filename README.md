@@ -1339,7 +1339,7 @@ function XhrSource(url, opts) {
   return eventTarget;
 }
 
-const xs = XhrSource(completionsURL, {
+const xs = XhrSource(remoteURL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -1347,12 +1347,23 @@ const xs = XhrSource(completionsURL, {
     },
     body: JSON.stringify(question)
   });
-  // 监听各个关心的event
-  xs.addEventListener('answer', e => {
-    const msg = JSON.parse(e.data);
-      if (msg.choices[0].delta.content) {
-        //  逐字输出事件流返回的内容
-        $('.tab-pane:not(.is-hidden) .chat-window .ai-response:last')[0].textContent += `${msg.choices[0].delta.content}`;
-      }
-  });
+
+// 监听各个关心的event
+xs.addEventListener('answer', e => {
+  const msg = JSON.parse(e.data);
+    if (msg.choices[0].delta.content) {
+      //  逐字输出事件流返回的内容
+      $('.tab-pane:not(.is-hidden) .chat-window .ai-response:last')[0].textContent += `${msg.choices[0].delta.content}`;
+    }
+});
+```
+## 11. 检查聊天窗口的滚动条是否到底，如果没有，使其滚动到底以显示聊天窗口中的所有消息 ##
+```js
+function chatWindowScrollToBottom() {
+  // 使滚动条滚到底，显示全部回复，方便用户浏览
+  const chatWindow = $('.tab-pane:not(.is-hidden) .chat-window')[0];
+  if (chatWindow.scrollHeight - chatWindow.offsetHeight - chatWindow.scrollTop > 1) {
+    $(chatWindow).scrollTop(chatWindow.scrollHeight);
+  }
+}
 ```
