@@ -1175,6 +1175,9 @@ class MyElement extends HTMLElement {
 - 403 – Forbidden – the server understood the request, but refuses to handle it or access is denied.
 - 404 – Not found – the resource was not found.
 - 500 – Internal Server Error – API developers should try to avoid such errors. These errors must be caught in the global catch-block and be logged, but they should not be returned in the response.
+
+## RESTful Design
+[RESTful架构及实践修炼宝典](https://cloud.tencent.com/developer/article/1543848)
 # MVC & MVVM
 # Performance
 # Security
