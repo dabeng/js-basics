@@ -1,6 +1,18 @@
 # JavaScript
 
 ## hotch-potch
+### 格式化
+MM/DD/YYYY
+```js
+function formatDate(value) {
+  const date = new Date(value);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1;
+  const d = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+
+  return month + '/' + d + '/' + year;
+}
+```
 ### 运算符
 #### 指数运算符
 ```js
