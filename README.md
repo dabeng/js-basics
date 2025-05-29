@@ -1195,11 +1195,12 @@ class MyElement extends HTMLElement {
 ## React.js Performance Best Practices
 1. **remove unnecessary http requests**
 2. **remove unnecessary rerender**
-3. **compress all assets **
-4. **use useCallback() hook to memoize a function, use useMemo() hook to memoize the function result.**
-5. **List Virtualization** Instead of rendering all the items at once, we only render the items that are currently visible on the screen
-6. **Lazy Loading Images**Lazy Instead of loading images at page load time, we load them when they enter the viewport.
-7. 
+3. **compress all assets**
+4. **Web Workers**  use web workders to perform heavy computation, this will reduce the burden on the main thread
+5. **use useCallback() hook to memoize a function, use useMemo() hook to memoize the function result.**
+6. **List Virtualization** Instead of rendering all the items at once, we only render the items that are currently visible on the screen
+7. **Lazy Loading Images** Instead of loading images at page load time, we load them when they enter the viewport.
+8. **code splitting** Instead of loading the entire bundle, a small chunk will be loaded when a user visits a particular page or triggers a specific action
 
 # Security
 ## Best Practices for Developing Secure Web Applications
