@@ -1192,6 +1192,15 @@ class MyElement extends HTMLElement {
 [RESTful架构及实践修炼宝典](https://cloud.tencent.com/developer/article/1543848)
 # MVC & MVVM
 # Performance
+## React.js Performance Best Practices
+1. **remove unnecessary http requests**
+2. **remove unnecessary rerender**
+3. **compress all assets **
+4. **use useCallback() hook to memoize a function, use useMemo() hook to memoize the function result.**
+5. **List Virtualization** Instead of rendering all the items at once, we only render the items that are currently visible on the screen
+6. **Lazy Loading Images**Lazy Instead of loading images at page load time, we load them when they enter the viewport.
+7. 
+
 # Security
 ## Best Practices for Developing Secure Web Applications
 1. **Use secure coding practices** Follow secure coding practices to avoid common vulnerabilities such as cross-site scripting (XSS) and SQL injection.
