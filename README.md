@@ -1170,7 +1170,11 @@ class MyElement extends HTMLElement {
 ```
 ## jQuery Plugin
 ## ES6 Class
-## React SFC
+## React & Redux
+### Why zustand over redux?
+- It's a more light-weight solution. In javascript world, less code is th truth.
+- Equally powerful but easier to use.
+- Use hooks to consume state. This will bring programmers a better development experience.
 ## Vuejs Single File component
 ## Make a slider
 # Animation
