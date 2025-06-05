@@ -1252,6 +1252,23 @@ function useFetch(url) {
 
 export default useFetch;
 ```
+Let's use this in a component:
+```js
+const UserList = () => {
+  const { data, loading, error } = useFetch('https://jsonplaceholder.typicode.com/users');
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  return (
+    <ul>
+      {data.map(user => (
+        <li key={user.id}>{user.name}</li>
+      ))}
+    </ul>
+  );
+};
+```
 # Redux
 ### Why zustand over redux?
 - It's a more light-weight solution. In javascript world, less code is th truth.
