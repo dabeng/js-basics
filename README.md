@@ -1273,9 +1273,13 @@ const UserList = () => {
 A higher order component (HOC) is a function that takes a component as an argument and returns a new component that wraps the original one. HOCs allow you to provide additional functionality to a component as well as re-use it across multiple components.
 ### Why not Use Index as Keys while Rendering Lists
 Elements often get added or deleted in an array. The order of elements could get changed too. In these cases, value of key prop changes and may lead to unpredictable behavior.
+### Difference Between Client-side and Server-side Rendering
+Server Side Rendering (SSR): Web Page is generated and rendered on the server before sending to the client. Client receives complete web page from the server and displays it directly to the user.
+
+Client Side Rendering (CSR): A basic HTML file is sent to the client, and then it renders dynamic content using JavaScript.
 # Redux
 ### Why zustand over redux?
-- It's a more light-weight solution. In javascript world, less code is th truth.
+- It's a more light-weight solution. In javascript world, less code is the truth.
 - Equally powerful but easier to use.
 - Use hooks to consume state. This will bring programmers a better development experience.
 ## Make a slider
