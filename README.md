@@ -1277,6 +1277,33 @@ Elements often get added or deleted in an array. The order of elements could get
 Server Side Rendering (SSR): Web Page is generated and rendered on the server before sending to the client. Client receives complete web page from the server and displays it directly to the user.
 
 Client Side Rendering (CSR): A basic HTML file is sent to the client, and then it renders dynamic content using JavaScript.
+### How to handle the common lifecycle methods in React Functional Components
+```js
+const Component = () => {
+  useEffect(() => {
+    // componentDidMount
+    console.log("Component mounted");
+
+    return () => {
+      // componentWillUnmount
+      console.log("Component unmounted");
+    };
+  }, []); // empty dependency array implies this effect runs only once when the component mounts
+
+  useEffect(
+    () => {
+      // componentDidUpdate
+      console.log("Component updated");
+    },
+    [
+      /* dependencies - changes to these values should trigger the function to re-run */
+      /* NOTE: This function will run during mount too */
+    ]
+  );
+
+  return <React.Fragment />;
+};
+```
 # Redux
 ### Why zustand over redux?
 - It's a more light-weight solution. In javascript world, less code is the truth.
