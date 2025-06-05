@@ -1269,6 +1269,10 @@ const UserList = () => {
   );
 };
 ```
+### Higher Order Components
+A higher order component (HOC) is a function that takes a component as an argument and returns a new component that wraps the original one. HOCs allow you to provide additional functionality to a component as well as re-use it across multiple components.
+### Why not Use Index as Keys while Rendering Lists
+Elements often get added or deleted in an array. The order of elements could get changed too. In these cases, value of key prop changes and may lead to unpredictable behavior.
 # Redux
 ### Why zustand over redux?
 - It's a more light-weight solution. In javascript world, less code is th truth.
