@@ -1180,6 +1180,45 @@ The virtual DOM is then compared to the real DOM and once it identifies the diff
 JSX (JavaScript XML) is a syntax extension for JavaScript that allows you to write HTML-like code in the same file as the JavaScript code. This makes it very easy for your HTML to work with JavaScript.
 ### What is State
 State is a React object that contains information about the component and determines how the component behaves. State can change any time based on user behavior. Any change in state causes the entire component to re-render.
+### What are props
+Props (short for properties) are a way to pass data from one component to another. They can be considered as arguments passed to components. Props are passed to a child component similar to HTML attributes.
+### Controlled and Uncontrolled components
+In controlled components, the values of form fields are set and updated ("controlled" by React state). 
+```js
+function ControlledComponent() {
+  const [value, setValue] = useState('');
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(`Value: ${value}`);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+        <input type="text" value={value} onChange={(e) => setValue(e.target.value)} />
+        <button type="submit">Submit</button>
+    </form>
+  );
+}
+```
+In uncontrolled components, the values of form fields are managed with refs.
+```js
+function UncontrolledComponent() {
+  const inputRef = useRef(null);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(`Input Value: ${inputRef.current.value}`);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+        <input type="text" ref={inputRef} />
+        <button type="submit">Submit</button>
+    </form>
+  );
+}
+```
 # Redux
 ### Why zustand over redux?
 - It's a more light-weight solution. In javascript world, less code is th truth.
