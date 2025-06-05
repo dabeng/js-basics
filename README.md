@@ -1168,10 +1168,14 @@ class MyElement extends HTMLElement {
   }
 }
 ```
-## ES6 Class
+# ES6
 # React
-### What is Virtual DOM ?
+### What is Virtual DOM
 As we all know, the browser DOM (Document Object Model) is a tree-like structure of different HTML elements. Virtual DOM is an in-memory representation of the real DOM. It is an abstraction created by React which is similar to the real DOM.
+### Why does React use the virtual DOM
+Updating and re-rendering the real DOM is slow and inefficient, especially if it gets updated frequently. So, instead of updating the real DOM directly, React updates the virtual DOM.
+### How does React use the virtual DOM
+The virtual DOM is then compared to the real DOM and once it identifies the differences, it only updates that part of the DOM, rather than rendering the entire DOM again. This process is known as diffing and reconciliation.
 ### Why zustand over redux?
 - It's a more light-weight solution. In javascript world, less code is th truth.
 - Equally powerful but easier to use.
