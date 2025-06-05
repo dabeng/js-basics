@@ -1169,7 +1169,9 @@ class MyElement extends HTMLElement {
 }
 ```
 ## ES6 Class
-## React & Redux
+# React
+### What is Virtual DOM ?
+As we all know, the browser DOM (Document Object Model) is a tree-like structure of different HTML elements. Virtual DOM is an in-memory representation of the real DOM. It is an abstraction created by React which is similar to the real DOM.
 ### Why zustand over redux?
 - It's a more light-weight solution. In javascript world, less code is th truth.
 - Equally powerful but easier to use.
