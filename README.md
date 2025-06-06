@@ -1316,6 +1316,10 @@ Because Fiber is asynchronous, React can:
 This change allows React to break away from the limits of the previous synchronous Stack Reconciler, where tasks couldn’t be interrupted. This change also allows React to fine-tune rendering components, ensuring that the most important updates happen as soon as possible.
 
 In React, reconciliation is the core mechanism responsible for efficiently updating the UI in response to changes in a component's state or props. It determines the minimal set of operations needed to transform the actual DOM to match the desired state represented by the virtual DOM.
+### SSG vs ISG vs SSR vs CSR - When to use which
+1. Static Site Generation (SSG)
+   SSG pre-renders all the pages of your website and serves them as per the client's requests.
+3. 
 # Redux
 ### Why zustand over redux?
 - It's a more light-weight solution. In javascript world, less code is the truth.
