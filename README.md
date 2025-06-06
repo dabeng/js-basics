@@ -1316,10 +1316,15 @@ Because Fiber is asynchronous, React can:
 This change allows React to break away from the limits of the previous synchronous Stack Reconciler, where tasks couldn’t be interrupted. This change also allows React to fine-tune rendering components, ensuring that the most important updates happen as soon as possible.
 
 In React, reconciliation is the core mechanism responsible for efficiently updating the UI in response to changes in a component's state or props. It determines the minimal set of operations needed to transform the actual DOM to match the desired state represented by the virtual DOM.
-### SSG vs ISG vs SSR vs CSR - When to use which
+### SSG vs ISR vs SSR vs CSR - When to use which
 1. Static Site Generation (SSG)
-   SSG pre-renders all the pages of your website and serves them as per the client's requests.
-3. 
+  SSG pre-renders all the pages of your website and serves them as per the client's requests. you should use it only when you have a website where the content rarely changes, like a product showcase website.
+2. Server-side rendering (SSR)
+  Server-side sends a fully rendered page to the client; the client's JavaScript bundle takes over the pages and allows the SPA framework to operate them. You should use it when you have a website with a lot of dynamic content that changes very frequently and heavily relies on SEO, like a stock ticker website.
+3. Incremental Static Regeneration (ISR)
+   ISR enables you to use static-generation on a per-page basis, without needing to rebuild the entire site. You should use it when you have a site where the content is dynamic but does NOT change frequently, like a blog site.
+4. Client-Side Rendering (CSR)
+   In CSR, the server-side sends a blank HTML page and a JavaScript bundle that handles all logic to the client-side. It is ideal for any site which CSR is ideal for any site which does not rely heavily on SEO.
 # Redux
 ### Why zustand over redux?
 - It's a more light-weight solution. In javascript world, less code is the truth.
