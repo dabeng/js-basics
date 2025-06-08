@@ -1225,8 +1225,8 @@ You can export the fetching logic as a Hook to avoid duplicating code.
 ```js
 function useFetch(url) {
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -1247,7 +1247,7 @@ function useFetch(url) {
     fetchData();
   }, [url]);
 
-  return { data, loading, error };
+  return { data, error, loading };
 }
 
 export default useFetch;
@@ -1329,6 +1329,441 @@ In React, reconciliation is the core mechanism responsible for efficiently updat
 5. Client-Side Rendering (CSR)
 
    In CSR, the server-side sends a blank HTML page and a JavaScript bundle that handles all logic to the client-side. It is ideal for any site which CSR is ideal for any site which does not rely heavily on SEO.
+
+### Explain the difference between `var`, `let`, and `const`
+- Thevarkeyword is function-scoped and can be redeclared, which can lead to unexpected behavior. 
+- In contrast,letandconstare block-scoped;letallows reassignment whileconstdoes not.
+
+### what are arrow functions? How are they different from regular functions ?
+Arrow functions provide a concise syntax for writing functions
+```js
+const sum = (a, b) => a + b;
+```
+Differences:
+
+- They have an implicit `return` if the function body is a single expression(without `{}`).
+- They do not have their own `this`, so the `this` keyword refers to the surrounding context.
+- They cannot be used as constructors (cannot be used with `new`).
+- They do not have `arguments` objects (use rest parameters instead)
+
+### What is a template literal
+A template literal is a way to include variables and expressions in strings
+```js
+const greeting = `Hello, ${name}!`;
+```
+### What are default parameters
+```js
+function greet(name = 'Guest') {
+return `Hello, ${name}!`; 
+}
+```
+### what is destructuring assignment
+```js
+const [a, b] = [1, 2]; // a = 1, b = 2
+const {name, age} = {name: 'John', age: 30}; // name = 'John', age = 30
+```
+### What are Rest Parameters
+Rest parameters allow you to represent an indefinite number of arguments as an array.
+```js
+function sum(...numbers) {
+return numbers.reduce((prev, curr) => prev + curr, 0);
+}
+console.log(sum(1, 2, 3, 4)); // 10
+```
+### What is `super` keyword
+Thesuperkeyword in ES6 classes is used to call the constructor of the parent class
+```js
+class Child extends Parent {
+constructor() {
+super();
+}
+}
+```
+### What are modules
+ES6 modules allow for splitting code into reusable pieces that can be imported and exported.
+```js
+// module.js
+export const PI = 3.14;
+export function calculateArea(radius) {
+return PI * radius * radius;
+}
+
+// main.js
+import { PI, calculateArea } from './module.js';
+console.log(calculateArea(5)); // 78.5
+```
+### What are Promises
+Promises are used for handling asynchronous operations. 
+
+A Promise can be in one of three states:
+1. Pending: Initial state, neither fulfilled nor rejected.
+2. Fulfilled: The operation completed successfully.
+3. Rejected: The operation failed.
+```js
+const myPromise = new Promise((resolve, reject) => {
+setTimeout(() => resolve('Success!'), 1000);
+});
+myPromise.then(result => console.log(result)); // Success! after 1 second
+```
+### What are `Set` and `Map` in ES6
+Setis a collection of unique values andMapis a collection of key-value pairs
+```js
+const mySet = new Set([1, 2, 3]);
+const myMap = new Map([['key1', 'value1'], ['key2', 'value2']]);
+```
+### 使用for...of 遍历对象
+```js
+const obj = {
+name: '豆包'，
+age: 18,
+job； ‘助手’
+}
+```
+－ 遍历对象的属性名
+```js
+for (const key of Object.keys(obj)) {
+console.log(key);
+}
+```
+－ 遍历对象的属性值
+```js
+for (const value of Object.values(obj)) {
+console.log(value);
+}
+```
+－ 遍历对象的属性名和值
+```js
+for (const [key, value] of Object.entries(obj)) {
+console.log(`${key}: ${value}`);
+}
+```
+### . What is the spread operator
+The spread operator is used to expand an array or object into individualelements or properties.
+```js
+const arr1 = [1, 2, 3];
+const arr2 = [...arr1, 4, 5]; // [1, 2, 3, 4, 5]
+
+const obj1 = { a: 1, b: 2 };
+const obj2 = { ...obj1, c: 3 }; // { a: 1, b: 2, c: 3 }
+
+# TypeSript
+### Utility types
+The utility types are extremely useful when you need to generate a new type that is similar to an already existing type with minor alterations.
+
+- Pick: Pick the necessary properties from anobject type
+- Omit: Pick all the properties from anobject type, omitting the selected keys
+- Partial: Make all properties of anobject typeoptional
+- Required: Make all properties of anobject typerequired
+```js
+interfaceUser{name:string;age?:number;email:string;}typePickUser=Pick<User,"name"|"age">;typeOmitUser=Omit<User,"age">;typePartialUser=Partial<User>;typeRequiredUser=Required<User>;// PickUser is equivalent to:// interface PickUser {// name: string;// age?: number;// }// OmitUser is equivalent to:// interface OmitUser {// name: string;// email: string;// }// PartialUser is equivalent to:// interface PartialUser {// name?: string;// age?: number;// email?: string;// }// RequiredUser is equivalent to:// interface RequiredUser {// name: string;// age: number;// email: string;// }
+```
+### Explain how the arrays work in TypeScript
+Here is the syntax to declare and initialize an array in TypeScript.
+```js
+let values: number[] = [15, 20, 25, 30];
+let values: Array<number> = [15, 20, 25, 30];
+```
+### What is any type, and when to use it
+There are times when you want to store a value in a variable but don’t know the type of that variable in advance. For example, the value is coming from an API call or the user input. The ‘any’ type allows you to assign a value of any type to the variable of type any.
+```js
+// json may come from a third-party API
+const employeeData: string = `{"name": "John Doe", "salary": 60000}`;
+
+// parse JSON to build employee object
+const employee: any = JSON.parse(employeeData);
+```
+TypeScript assumes a variable is of typeanywhen you don’t explicitly provide the type, and the compiler cannot infer the type from the surrounding context. 
+### What is void, and when to use the void type
+The void indicates the absence of type on a variable. It acts as the opposite type to any. It is especially useful in functions that don’t return a value.
+```js
+function notify(): void {
+alert("The user has been notified.");
+}
+````
+If a variable is of type void, you can only assign the null or undefined values to that variable
+### What is an unknown type
+The unknown type is the type-safe counterpart of any type. You can assign anything to the unknown, but the unknown isn’t assignable to anything but itself and any, without performing a type assertion of a control-flow-based narrowing. You cannot perform any operations on a variable of an unknown type without first asserting or narrowing it to a more specific type
+```js
+let foo: unknown = "Akshay";
+let bar: string = foo; // Type 'unknown' is not assignable to type 'string'.(2322)
+```
+You can narrow down a variable of an unknown type to something specific by doing typeof checks or comparison checks or using type guards. For example, we can get rid of the above error by
+```js
+let foo: unknown = "Akshay";
+let bar: string = foo as string;
+```
+### Explain the arrow function syntax in TypeScript
+```js
+function add(x: number, y: number): number {
+let sum = x + y;
+return sum;
+}
+```
+Using arrow functions syntax, the same function can be defined as:
+```js
+let add = (x: number, y: number): number => x + y;
+```
+### Provide the syntax of a function with the type annotations
+Here’s the TypeScript syntax to create and call a function
+```js
+function greet(name: string): string {
+return `Hello, ${name}`;
+}
+
+let greeting = greet("Anders");
+console.log(greeting); // "Hello, Anders"
+```
+### How to create objects in TypeScript
+```js
+let pt: { x: number; y: number } = {
+x: 10,
+y: 20
+};
+```
+### How to specify optional properties in TypeScript
+```js
+let pt: { x: number; y: number; z?: number } = {
+x: 10,
+y: 20
+};
+```
+In the example above, because the property ‘z’ is marked as optional, the compiler won’t complain if we don’t provide it during the initialization.
+### Explain the concept of null and its use in TypeScript
+In programming, a null value indicates an absence of value.
+```js
+function greet(name: string | null) {
+if (name === null) {
+console.log("Name is not provided");
+} else {
+console.log("Good morning, " + name.toUpperCase());
+}
+}
+
+var foo = null;
+greet(foo); // "Name is not provided"
+
+foo = "Anders";
+greet(foo); // "Good morning, ANDERS"
+```
+### What is undefined in TypeScript
+When a variable is declared without initialization, it’s assigned the undefined value.
+``js
+console.log(null == null); // true
+console.log(undefined == undefined); // true, loose equality
+console.log(null == undefined); // true, with type-conversion
+
+console.log(null === undefined); // false, without type-conversion, strict equality
+console.log(0 == undefined); // false
+console.log('' == undefined); // false
+console.log(false == undefined); // false
+```
+### Explain how enums work in TypeScript
+```js
+enum Team {
+Alpha,
+Beta,
+Gamma,
+Delta
+}
+let t: Team = Team.Delta;
+```
+By default, the enums start the numbering at 0. You can override the default numbering by explicitly assigning the values to its members.
+```js
+enum Author {
+Anders = "Anders",
+Hejlsberg = "Hejlsberg"
+};
+```
+### What is the typeof operator? How is it used in TypeScript?
+Similar to JavaScript, the typeof operator in TypeScript returns the type of the operand as a string
+```js
+console.log(typeof 10); // "number"
+
+console.log(typeof 'foo'); // "string"
+
+console.log(typeof false); // "boolean"
+
+console.log(typeof bar); // "undefined"
+```
+In TypeScript, you can use the typeof operator in a type context to refer to the type of a property or a variable.
+```js
+let greeting = "hello";
+let typeOfGreeting: typeof greeting; // similar to let typeOfGreeting: string
+```
+### What are the rest parameters and arguments in TypeScript
+A rest parameter allows a function to accept an indefinite number of arguments as an array. It is denoted by the ‘…’ syntax and indicates that the function can accept one or more arguments.
+```js
+function add(...values: number[]) {
+let sum = 0;
+values.forEach(val => sum += val);
+return sum;
+}
+const sum = add(5, 10, 15, 20);
+console.log(sum); // 50
+```
+In contrast, the rest arguments allow a function caller to provide a variable number of arguments from an array.
+```js
+const first = [1, 2, 3];
+const second = [4, 5, 6];
+
+first.push(...second);
+console.log(first); // [1, 2, 3, 4, 5, 6]
+```
+### What is parameter destructuring
+Parameter destructing allows a function to unpack the object provided as an argument into one or more local variables. 
+```js
+function multiply({ a, b, c }: { a: number; b: number; c: number }) {
+console.log(a * b * c);
+}
+
+multiply({ a: 1, b: 2, c: 3 });
+
+You can simplify the above code by using an interface or a named type, as follows:
+type ABC = { a: number; b: number; c: number };
+
+function multiply({ a, b, c }: ABC) {
+console.log(a * b * c);
+}
+
+multiply({ a: 1, b: 2, c: 3 });
+```
+### Explain the TypeScript class syntax
+```js
+class Employee {
+name: string;
+salary: number;
+
+constructor(name: string, salary: number) {
+this.name = name;
+this.salary = salary;
+}
+promote() : void {
+this.salary += 10000;
+}
+}
+/ Create a new employee
+let john = new Employee("John", 60000);
+
+console.log(john.salary); // 60000
+john.promote();
+console.log(john.salary); // 70000
+```
+### Provide the syntax for optional parameters in TypeScript
+```js
+function greet(name: string, greeting?: string) {
+if (!greeting)
+greeting = "Hello";
+
+console.log(`${greeting}, ${name}`);
+}
+
+greet("John", "Hi"); // Hi, John
+greet("Mary", "Hola"); // Hola, Mary
+greet("Jane"); // Hello, Jane
+```
+### What is the purpose of the tsconfig.json file?
+A tsconfig.json file in a directory marks that directory as the root of a TypeScript project. It provides the compiler options to compile the project.
+Here is a sample tsconfig.json file:
+```js
+{
+"compilerOptions": {
+"module": "system",
+"noImplicitAny": true,
+"removeComments": true,
+"outFile": "../../built/local/tsc.js",
+"sourceMap": true
+},
+"include": ["src/**/*"],
+"exclude": ["node_modules", "**/*.spec.ts"]
+}
+```
+### What are type assertions in TypeScript?
+Sometimes, you as a programmer might know more about the type of a variable than TypeScript can infer. Usually, this happens when you know the type of an object is more specific than its current type. In such cases, you can tell the TypeScript compiler not to infer the type of the variable by using type assertions.
+
+TypeScript provides two forms to assert the types.
+
+1. as syntax:
+```js
+let value: unknown = "Foo";
+let len: number = (value as string).length;
+```
+2. <> syntax:
+```js
+let value: unknown = "Foo";
+let len: number = (<string>value).length;
+```
+Explain the tuple types in TypeScript.
+Tuples are a special type in TypeScript. They are similar to arrays with a fixed number of elements with a known type. However, the types need not be the same.
+```js
+// Declare a tuple type and initialize it
+let values: [string, number] = ["Foo", 15];
+
+// Type 'boolean' is not assignable to type 'string'.(2322)
+// Type 'string' is not assignable to type 'number'.(2322)
+let wrongValues: [string, number] = [true, "hello"]; // Error
+```
+Since TypeScript 3.0, a tuple can specify one or more optional types using the ? as shown below.
+```js
+let values: [string, number, boolean?] = ["Foo", 15];
+```
+### What are type aliases? How do you create one?
+Type aliases give a new, meaningful name for a type. They don’t create new types but create new names that refer to that type.
+For example, you can alias a union type to avoid typing all the types everywhere that value is being used.
+```js
+type alphanumeric = string | number;
+let value: alphanumeric = "";
+value = 10;
+```
+### What are intersection types?
+Intersection types let you combine the members of two or more types by using the ‘&’ operator. This allows you to combine existing types to get a single type with all the features you need.
+The following example creates a new type Supervisor that has the members of types Employee and Manager.
+```js
+interface Employee {
+work: () => string;
+}
+
+interface Manager {
+manage: () => string;
+}
+
+type Supervisor = Employee & Manager;
+
+// john can both work and manage
+let john: Supervisor;
+```
+### What are union types
+A union type is a special construct in TypeScript that indicates that a value can be one of several types. A vertical bar (|) separates these types.
+Consider the following example where the variable value belongs to a union type consisting of strings and numbers. The value is initialized to string “Foo”. Because it can only be a string or a number, we can change it to a number later, and the TypeScript compiler doesn’t complain. 
+```js
+let value: string | number = "Foo";
+value = 10; // Okay
+```
+However, if we try to set the value to a type not included in the union types, we get the following error. 
+```js
+value = true; // Type 'boolean' is not assignable to type 'string | number'.(2322)
+``` 
+Union types allow you to create new types out of existing types. This removes a lot of boilerplate code as you don’t have to create new classes and type hierarchies
+### How to make object properties immutable
+You can mark object properties as immutable by using the readonly keyword before the property name. For example:
+```js
+interface Coordinate {
+readonly x: number;
+readonly y: number;
+}
+```
+When you mark a property as readonly, it can only be set when you initialize the object. Once the object is created, you cannot change it. 
+```js
+let c: Coordinate = { x: 5, y: 15 };
+c.x = 20; // Cannot assign to 'x' because it is a read-only property.(2540)
+```
+### Explain the purpose of the ‘in’ operator.
+The in operator is used to find if a property is in the specified object. It returns true if the property belongs to the object. Otherwise, it returns false.
+```js
+const car = { make: 'Hyundai', model: 'Elantra', year: 2017 };
+console.log('model' in car); // true
+console.log('test' in car); // false
+```
+
 # Redux
 ### Why zustand over redux?
 - It's a more light-weight solution. In javascript world, less code is the truth.
