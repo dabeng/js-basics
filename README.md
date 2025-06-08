@@ -1458,7 +1458,42 @@ The utility types are extremely useful when you need to generate a new type that
 - Partial: Make all properties of anobject typeoptional
 - Required: Make all properties of anobject typerequired
 ```js
-interfaceUser{name:string;age?:number;email:string;}typePickUser=Pick<User,"name"|"age">;typeOmitUser=Omit<User,"age">;typePartialUser=Partial<User>;typeRequiredUser=Required<User>;// PickUser is equivalent to:// interface PickUser {// name: string;// age?: number;// }// OmitUser is equivalent to:// interface OmitUser {// name: string;// email: string;// }// PartialUser is equivalent to:// interface PartialUser {// name?: string;// age?: number;// email?: string;// }// RequiredUser is equivalent to:// interface RequiredUser {// name: string;// age: number;// email: string;// }
+interface User {
+  name: string;
+  age?: number;
+  email: string;
+}
+
+type PartialUser = Partial<User>;
+type PickUser = Pick<User, "name" | "age">;
+type OmitUser = Omit<User, "age">;
+type RequiredUser = Required<User>;
+
+// PartialUser is equivalent to:
+// interface PartialUser {
+//   name?: string;
+//   age?: number;
+//   email?: string;
+// }
+
+// PickUser is equivalent to:
+// interface PickUser {
+//   name: string;
+//   age?: number;
+// }
+
+// OmitUser is equivalent to:
+// interface OmitUser {
+//   name: string;
+//   email: string;
+// }
+
+// RequiredUser is equivalent to:
+// interface RequiredUser {
+//   name: string;
+//   age: number;
+//   email: string;
+// }
 ```
 ### Explain how the arrays work in TypeScript
 Here is the syntax to declare and initialize an array in TypeScript.
