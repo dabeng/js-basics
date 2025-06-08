@@ -1422,19 +1422,19 @@ age: 18,
 job； ‘助手’
 }
 ```
-－ 遍历对象的属性名
+- 遍历对象的属性名
 ```js
 for (const key of Object.keys(obj)) {
 console.log(key);
 }
 ```
-－ 遍历对象的属性值
+- 遍历对象的属性值
 ```js
 for (const value of Object.values(obj)) {
 console.log(value);
 }
 ```
-－ 遍历对象的属性名和值
+- 遍历对象的属性名和值
 ```js
 for (const [key, value] of Object.entries(obj)) {
 console.log(`${key}: ${value}`);
