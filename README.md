@@ -1766,6 +1766,52 @@ const car = { make: 'Hyundai', model: 'Elantra', year: 2017 };
 console.log('model' in car); // true
 console.log('test' in car); // false
 ```
+### What are conditional types? How do you create them?
+A conditional type allows you to dynamically select one of two possible types based on a condition. The condition is expressed as a type relationship test.
+```js
+C extends B ? TypeX : TypeY
+```
+Here, if type C extends B, the value of the above type is TypeX. Otherwise, it is TypeY.
+### 26. Provide the TypeScript syntax to create function overloads
+```js
+function reverse(str:string):string;
+function reverse(arr:any[]):any[];
+function reverse(
+  stringOrArray:string|any[]
+):string|any[] {
+  if (typeof stringOrArray === 'string')
+    return stringOrArray.split('').reverse().join('');
+  else
+    return stringOrArray.slice().reverse();
+}
+```
+### What is meant by type inference
+TypeScript can infer the type of a variable when you don’t provide an explicit type. This is known as type inference. This is usually done when the variables or parameters are initialized during the declaration.
+
+For example, TypeScript knows that the variable foo is a string, even though we don’t mention string as a type.
+```js
+let foo = "this is a string";
+console.log(typeof foo);  // "string"
+```
+### What are interfaces
+They act as a contract in your code by defining the properties and methods that an object must implement.
+```js
+interface Employee {
+name: string;
+salary: number;
+}
+
+function process(employee: Employee) {
+console.log(`${employee.name}'s salary = ${employee.salary}`);
+}
+
+let john: Employee = {
+name: "John Doe",
+salary: 150000
+}
+
+process(john);  // "John Doe's salary = 150000"
+```
 
 # Redux
 ### Why zustand over redux?
