@@ -1812,7 +1812,131 @@ salary: 150000
 
 process(john);  // "John Doe's salary = 150000"
 ```
+###  What are generics
+Here's an example of a generic function that returns whatever is passed into it:
+```js
+function identity<T>(arg: T): T {
+  return arg;
+}
 
+console.log(identity("myString"));  // Output: myString
+```
+In this example, T acts as a placeholder for any type. The type is typically inferred automatically by TypeScript, but you can specify the exact T when calling the function.
+### Optional Chaining
+Optional chaining is another feature supported by TypeScript. It allows you to access deeply nested properties without worrying if an intermediate property is null or undefined.
+
+For example:
+```js
+type User = {
+  name: string;
+  address?: {
+	street?: string;
+	city?: string;
+  }
+}
+
+const user: User = {
+  name: 'John Doe',
+};
+
+console.log(user.address?.city);  // Outputs: undefined
+```
+### what type compatibility
+If a type Y has at least the same members as type X, then type Y is said to be compatible with type X.
+```js
+interface Named {
+  name: string;
+}
+
+class Person {
+  name: string;
+}
+
+let p: Named;
+p = new Person();  // OK, because 'Person' has a 'name' member
+```
+### what are type aliases
+Type aliases allow you to create new names for types. They’re kind of similar to interfaces, but they can also name primitives, unions, tuples, and any other types that you'd otherwise have to write by hand.
+
+Once you've defined a type alias, you can use it in places where you would use any other type:
+```js
+type Point = {
+  x: number;
+  y: number;
+};
+
+function drawPoint(p: Point) {
+  console.log(`The point is at position ${p.x}, ${p.y}`);
+}
+
+drawPoint({ x: 10, y: 20 }); // Outputs: "The point is at position 10, 20"
+### what is the difference between type and interface
+TypeScript allows interface declarations with the same name to be merged. It's a key advantage of interfaces; but, you can't do this with type aliases.
+```js
+interface User {
+  name: string;
+}
+
+interface User {
+  age: number;
+}
+
+let user: User = {
+  name: 'John Doe',
+  age: 30,
+};
+```
+type alias supports union (|), intersection (&), typeof, etc, which allows you to create more complex types.
+```js
+type User = {
+  name: string;
+} & {
+  age: number;
+};
+
+let user: User = {
+  name: 'John Doe',
+  age: 30,
+};
+```
+
+If you want to create complex type combinations, you'd use type. If you're describing object shapes, interface is usually the better choice.
+```js
+type User = {
+  name: string;
+} & {
+  age: number;
+};
+
+let user: User = {
+  name: 'John Doe',
+  age: 30,
+};
+```
+###  read-only arrays and objects
+However, once defined as ReadonlyArray, you can't alter the array. This means that any attempt to mutate the array such as push, pop, or assignment will result in a compile-time error:
+```js
+const arr: ReadonlyArray<number> = [1, 2, 3, 4, 5];
+
+arr.push(6);  // Error: Property 'push' does not exist on type 'readonly number[]'.
+arr[0] = 10;  // Error: Index signature in type 'readonly number[]' only permits reading.
+```
+Similarly, you can make the properties of an object read-only using the Readonly<T> generic utility type where T is the type of the object:
+```js
+type Point = {
+  x: number;
+  y: number;
+};
+
+const point: Readonly<Point> = {
+  x: 10,
+  y: 20
+};
+```
+Any attempt to change the properties of point will result in a compile-time error:
+```js
+point.x = 30; // Error: Cannot assign to 'x' because it is a read-only property.
+```
 # Redux
 ### Why zustand over redux?
 - It's a more light-weight solution. In javascript world, less code is the truth.
