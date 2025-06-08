@@ -1320,12 +1320,15 @@ In React, reconciliation is the core mechanism responsible for efficiently updat
 1. Static Site Generation (SSG)
    
   SSG pre-renders all the pages of your website and serves them as per the client's requests. you should use it only when you have a website where the content rarely changes, like a product showcase website.
+  
 2. Server-side rendering (SSR)
 
   Server-side sends a fully rendered page to the client; the client's JavaScript bundle takes over the pages and allows the SPA framework to operate them. You should use it when you have a website with a lot of dynamic content that changes very frequently and heavily relies on SEO, like a stock ticker website.
+  
 3. Incremental Static Regeneration (ISR)
 
    ISR enables you to use static-generation on a per-page basis, without needing to rebuild the entire site. You should use it when you have a site where the content is dynamic but does NOT change frequently, like a blog site.
+   
 4. Client-Side Rendering (CSR)
 
    In CSR, the server-side sends a blank HTML page and a JavaScript bundle that handles all logic to the client-side. It is ideal for any site which CSR is ideal for any site which does not rely heavily on SEO.
