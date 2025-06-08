@@ -1168,7 +1168,6 @@ class MyElement extends HTMLElement {
   }
 }
 ```
-# ES6
 # React
 ### What is Virtual DOM
 As we all know, the browser DOM (Document Object Model) is a tree-like structure of different HTML elements. Virtual DOM is an in-memory representation of the real DOM. It is an abstraction created by React which is similar to the real DOM.
@@ -1333,6 +1332,7 @@ In React, reconciliation is the core mechanism responsible for efficiently updat
 
    In CSR, the server-side sends a blank HTML page and a JavaScript bundle that handles all logic to the client-side. It is ideal for any site which CSR is ideal for any site which does not rely heavily on SEO.
 
+# ES6
 ### Explain the difference between `var`, `let`, and `const`
 - Thevarkeyword is function-scoped and can be redeclared, which can lead to unexpected behavior. 
 - In contrast,letandconstare block-scoped;letallows reassignment whileconstdoes not.
@@ -1448,7 +1448,7 @@ const arr2 = [...arr1, 4, 5]; // [1, 2, 3, 4, 5]
 
 const obj1 = { a: 1, b: 2 };
 const obj2 = { ...obj1, c: 3 }; // { a: 1, b: 2, c: 3 }
-
+```
 # TypeSript
 ### Utility types
 The utility types are extremely useful when you need to generate a new type that is similar to an already existing type with minor alterations.
