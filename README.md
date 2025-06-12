@@ -1333,6 +1333,26 @@ In React, reconciliation is the core mechanism responsible for efficiently updat
    In CSR, the server-side sends a blank HTML page and a JavaScript bundle that handles all logic to the client-side. It is ideal for any site which CSR is ideal for any site which does not rely heavily on SEO.
 
 # ES6
+## Promise
+### Promise 新建后就会立即执行
+```js
+let promise = new Promise(function(resolve, reject) {
+  console.log('Promise');
+  resolve();
+});
+
+promise.then(function() {
+  console.log('resolved');
+});
+
+console.log('Hi!');
+
+// Promise
+// Hi!
+// resolved
+```
+## Generator
+## Decorator
 ### Explain the difference between `var`, `let`, and `const`
 - Thevarkeyword is function-scoped and can be redeclared, which can lead to unexpected behavior. 
 - In contrast,letandconstare block-scoped;letallows reassignment whileconstdoes not.
