@@ -1419,6 +1419,24 @@ allSettledPromise.then(function (results) {
 // ]
 ```
 上面代码中，Promise.allSettled()的返回值allSettledPromise，状态只可能变成fulfilled。它的回调函数接收到的参数是数组results。该数组的每个成员都是一个对象，对应传入Promise.allSettled()的数组里面的两个 Promise 对象。
+### Promise.resolve()
+Promise.resolve()方法允许调用时不带参数，直接返回一个resolved状态的 Promise 对象。
+```js
+setTimeout(function () {
+  console.log('three');
+}, 0);
+
+Promise.resolve().then(function () {
+  console.log('two');
+});
+
+console.log('one');
+
+// one
+// two
+// three
+```
+上面代码中，setTimeout(fn, 0)在下一轮“事件循环”开始时执行，Promise.resolve()在本轮“事件循环”结束时执行，console.log('one')则是立即执行，因此最先输出。
 ## Generator
 ## Decorator
 ### Explain the difference between `var`, `let`, and `const`
