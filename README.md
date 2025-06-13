@@ -460,7 +460,7 @@ Rectangle.prototype.constructor = Rectangle;
 var rect = new Rectangle();
 rect.move(1, 1); // Outputs, 'Shape moved.'
 
-// ES6 version
+//  version
 class Animal { 
   constructor(name) {
     this.name = name;
@@ -498,7 +498,7 @@ MyClass.prototype.myMethod = function() {
   // do a thing
 };
 
-// ES6 version
+//  version
 class A {
   constructor(){
     console.log('A');
@@ -940,7 +940,7 @@ str.split(' ').map(word => word.split('').reverse().join('')).join(' ')
 // Array.prototype.join()
 Array(n+1).join(str);
 
-// ES6 repeat()
+//  repeat()
 str.repeat(n)
 ```
 ### 字符与ASCII码互转
@@ -1437,6 +1437,24 @@ console.log('one');
 // three
 ```
 上面代码中，setTimeout(fn, 0)在下一轮“事件循环”开始时执行，Promise.resolve()在本轮“事件循环”结束时执行，console.log('one')则是立即执行，因此最先输出。
+### Promise.try()
+实际开发中，经常遇到一种情况：不知道或者不想区分，函数f是同步函数还是异步操作，但是想用 Promise 来处理它。
+
+那么有没有一种方法，让同步函数同步执行，异步函数异步执行，并且让它们具有统一的 API 呢？
+
+```js
+const f = () => console.log('now');
+Promise.try(f);
+console.log('next');
+// now
+// next
+```
+```js
+Promise.try(() => database.users.get({id: userId}))
+  .then(...)
+  .catch(...)
+```
+事实上，Promise.try就是模拟try代码块，就像promise.catch模拟的是catch代码块。
 ## Generator
 ## Decorator
 ### Explain the difference between `var`, `let`, and `const`
