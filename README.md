@@ -437,7 +437,6 @@ class Point {
 }
 var p2 = new Point(3, 4);
 ```
-上面代码中，Promise 新建后立即执行，所以首先输出的是Promise。然后，then方法指定的回调函数，将在当前脚本所有同步任务执行完才会执行，所以resolved最后输出。
 ### Inheritance
 ```js
 // ES5 version
@@ -1351,6 +1350,46 @@ console.log('Hi!');
 // Promise
 // Hi!
 // resolved
+```
+上面代码中，Promise 新建后立即执行，所以首先输出的是Promise。然后，then方法指定的回调函数，将在当前脚本所有同步任务执行完才会执行，所以resolved最后输出。
+### 调用resolve或reject并不会终结 Promise 的参数函数的执行
+```js
+new Promise((resolve, reject) => {
+  resolve(1);
+  console.log(2);
+}).then(r => {
+  console.log(r);
+});
+// 2
+// 1
+```
+立即 resolved 的 Promise 是在本轮事件循环的末尾执行，总是晚于本轮循环的同步任务。
+### Promise中的错误总是会被下一个catch语句捕获
+```js
+getJSON('/post/1.json').then(function(post) {
+  return getJSON(post.commentURL);
+}).then(function(comments) {
+  // some code
+}).catch(function(error) {
+  // 处理前面三个Promise产生的错误
+});
+```
+### Promise 内部的错误不会影响到 Promise 外部的代码(不会退出进程、终止脚本执行)，通俗的说法就是“Promise 会吃掉错误”
+```js
+const someAsyncThing = function() {
+  return new Promise(function(resolve, reject) {
+    // 下面一行会报错，因为x没有声明
+    resolve(x + 2);
+  });
+};
+
+someAsyncThing().then(function() {
+  console.log('everything is great');
+});
+
+setTimeout(() => { console.log(123) }, 2000);
+// Uncaught (in promise) ReferenceError: x is not defined
+// 123
 ```
 ## Generator
 ## Decorator
