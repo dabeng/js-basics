@@ -1374,7 +1374,8 @@ getJSON('/post/1.json').then(function(post) {
   // 处理前面三个Promise产生的错误
 });
 ```
-### Promise 内部的错误不会影响到 Promise 外部的代码(不会退出进程、终止脚本执行)，通俗的说法就是“Promise 会吃掉错误”
+### Promise 会吃掉错误
+Promise 内部的错误不会影响到 Promise 外部的代码(不会退出进程、终止脚本执行)
 ```js
 const someAsyncThing = function() {
   return new Promise(function(resolve, reject) {
