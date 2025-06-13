@@ -1392,6 +1392,33 @@ setTimeout(() => { console.log(123) }, 2000);
 // Uncaught (in promise) ReferenceError: x is not defined
 // 123
 ```
+### 如果Promise 指定在下一轮“事件循环”再抛出错误
+```js
+const promise = new Promise(function (resolve, reject) {
+  resolve('ok');
+  setTimeout(function () { throw new Error('test') }, 0)
+});
+promise.then(function (value) { console.log(value) });
+// ok
+// Uncaught Error: test
+```
+上面代码中，Promise 指定在下一轮“事件循环”再抛出错误。到了那个时候，Promise 的运行已经结束了，所以这个错误是在 Promise 函数体外抛出的，会冒泡到最外层，成了未捕获的错误。
+### Promise.allSettled()
+```js
+const resolved = Promise.resolve(42);
+const rejected = Promise.reject(-1);
+
+const allSettledPromise = Promise.allSettled([resolved, rejected]);
+
+allSettledPromise.then(function (results) {
+  console.log(results);
+});
+// [
+//    { status: 'fulfilled', value: 42 },
+//    { status: 'rejected', reason: -1 }
+// ]
+```
+上面代码中，Promise.allSettled()的返回值allSettledPromise，状态只可能变成fulfilled。它的回调函数接收到的参数是数组results。该数组的每个成员都是一个对象，对应传入Promise.allSettled()的数组里面的两个 Promise 对象。
 ## Generator
 ## Decorator
 ### Explain the difference between `var`, `let`, and `const`
