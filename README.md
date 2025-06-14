@@ -1333,6 +1333,224 @@ In React, reconciliation is the core mechanism responsible for efficiently updat
    In CSR, the server-side sends a blank HTML page and a JavaScript bundle that handles all logic to the client-side. It is ideal for any site which CSR is ideal for any site which does not rely heavily on SEO.
 
 # ES6
+## Event Loop
+Example 1: Basic Synchronous and Asynchronous Code
+```js
+console.log('A'); // Synchronous
+
+setTimeout(() => {
+  console.log('B'); // Macrotask
+}, 0);
+
+console.log('C'); // Synchronous
+```
+Output: A, C, B
+
+Example 2: Microtasks with Promises
+```js
+console.log('A');
+
+setTimeout(() => {
+  console.log('B'); // Macrotask
+}, 0);
+
+Promise.resolve().then(() => {
+  console.log('C'); // Microtask
+});
+
+console.log('D');
+```
+Output: A, D, C, B
+
+Example 3: Nested Microtasks
+```js
+Promise.resolve().then(() => {
+  console.log('A');
+  Promise.resolve().then(() => console.log('B'));
+});
+
+console.log('C');
+```
+Output: C, A, B
+
+Example 4: setTimeout vs setImmediate (Node.js only)
+```js
+setTimeout(() => console.log('A'), 0); // Macrotask
+setImmediate(() => console.log('B')); // Macrotask in Node.js
+```
+Output (depends on Node.js version): Generally A, then B.
+
+Example 5: Event Listener and Promises
+```js
+document.body.addEventListener('click', () => {
+  console.log('Click Event'); // Macrotask
+});
+
+Promise.resolve().then(() => console.log('Promise Resolved')); // Microtask
+console.log('End');
+```
+Output: End, Promise Resolved, Click Event
+
+Example 6: Interleaving Promises and setTimeout
+```js
+setTimeout(() => console.log('A'), 0);
+Promise.resolve().then(() => console.log('B'));
+setTimeout(() => console.log('C'), 0);
+Promise.resolve().then(() => console.log('D'));
+```
+Output: B, D, A, C
+
+Example 7: Nested Promises with setTimeout
+```js
+console.log('A');
+
+setTimeout(() => {
+  console.log('B');
+  Promise.resolve().then(() => {
+    console.log('C');
+  });
+}, 0);
+
+Promise.resolve().then(() => {
+  console.log('D');
+  setTimeout(() => {
+    console.log('E');
+  }, 0);
+});
+
+console.log('F');
+```
+Output:
+
+1. A (Synchronous)
+2. F (Synchronous)
+3. D (Microtask from Promise)
+4. B (Macrotask from setTimeout)
+5. C (Microtask created within the setTimeout)
+6. E (Macrotask from the inner setTimeout)
+
+Example 8: Promise Chaining with setTimeout
+```js
+console.log('1');
+
+setTimeout(() => {
+  console.log('2');
+  Promise.resolve().then(() => {
+    console.log('3');
+  }).then(() => {
+    console.log('4');
+  });
+}, 0);
+
+Promise.resolve().then(() => {
+  console.log('5');
+}).then(() => {
+  console.log('6');
+});
+
+console.log('7');
+```
+Output:
+
+1. 1 (Synchronous)
+2. 7 (Synchronous)
+3. 5 (Microtask from first Promise)
+4. 6 (Chained Microtask)
+5. 2 (Macrotask from setTimeout)
+6. 3 (Microtask from Promise inside setTimeout)
+7. 4 (Chained Microtask)
+
+Example 9: Mixing Promise Resolution with Delays
+```js
+console.log('Start');
+
+setTimeout(() => {
+  console.log('Timeout 1');
+}, 0);
+
+Promise.resolve().then(() => {
+  console.log('Promise 1');
+  setTimeout(() => {
+    console.log('Timeout 2');
+  }, 0);
+  return Promise.resolve();
+}).then(() => {
+  console.log('Promise 2');
+});
+
+console.log('End');
+```
+Output:
+
+1. Start (Synchronous)
+2. End (Synchronous)
+3. Promise 1 (Microtask)
+4. Promise 2 (Chained Microtask)
+5. Timeout 1 (Macrotask from first setTimeout)
+6. Timeout 2 (Macrotask from setTimeout inside Promise)
+
+Example 10: Deeply Nested Promises in a Timer
+```js
+setTimeout(() => {
+  console.log('Timer 1');
+  Promise.resolve().then(() => {
+    console.log('Microtask 1');
+    Promise.resolve().then(() => {
+      console.log('Microtask 2');
+    });
+  });
+}, 0);
+
+Promise.resolve().then(() => {
+  console.log('Microtask 3');
+});
+
+console.log('Main Task');
+```
+Output:
+
+1. Main Task (Synchronous)
+2. Microtask 3 (Microtask from Promise)
+3. Timer 1 (Macrotask from setTimeout)
+4. Microtask 1 (Microtask within setTimeout)
+5. Microtask 2 (Chained Microtask from Microtask 1)
+
+Example 11: Combining Chained Promises and Timer Nesting
+```js
+console.log('Start');
+
+setTimeout(() => {
+  console.log('Timeout 1');
+  Promise.resolve().then(() => {
+    console.log('Promise 1');
+  }).then(() => {
+    console.log('Promise 2');
+  });
+}, 0);
+
+Promise.resolve().then(() => {
+  console.log('Promise 3');
+  setTimeout(() => {
+    console.log('Timeout 2');
+  }, 0);
+  return Promise.resolve();
+}).then(() => {
+  console.log('Promise 4');
+});
+
+console.log('End');
+```
+Output:
+
+1. Start (Synchronous)
+2. End (Synchronous)
+3. Promise 3 (Microtask from first Promise)
+4. Promise 4 (Chained Microtask)
+5. Timeout 1 (Macrotask from first setTimeout)
+6. Promise 1 (Microtask within Timeout 1)
+7. Promise 2 (Chained Microtask within Timeout 1)
+8. Timeout 2 (Macrotask from setTimeout inside Promise)
+
 ## Promise
 ### Promise 新建后就会立即执行
 ```js
