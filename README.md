@@ -1791,7 +1791,7 @@ const arr2 = [...arr1, 4, 5]; // [1, 2, 3, 4, 5]
 const obj1 = { a: 1, b: 2 };
 const obj2 = { ...obj1, c: 3 }; // { a: 1, b: 2, c: 3 }
 ```
-# TypeSript
+# TypeScript
 ### Utility types
 The utility types are extremely useful when you need to generate a new type that is similar to an already existing type with minor alterations.
 
