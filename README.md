@@ -1751,7 +1751,7 @@ setTimeout(() => resolve('Success!'), 1000);
 myPromise.then(result => console.log(result)); // Success! after 1 second
 ```
 ### What are `Set` and `Map` in ES6
-Setis a collection of unique values andMapis a collection of key-value pairs
+Set is a collection of unique values and Map is a collection of key-value pairs
 ```js
 const mySet = new Set([1, 2, 3]);
 const myMap = new Map([['key1', 'value1'], ['key2', 'value2']]);
